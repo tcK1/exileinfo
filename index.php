@@ -1,57 +1,46 @@
-<pre>
-<?php
-$connection = new MongoClient("mongodb://ticokaic:exaltedorb@ds049486.mlab.com:49486/heroku_869jvsp2");
+<!DOCTYPE html>
 
-$aux = $connection->heroku_869jvsp2->SC_Statistic_Ascendancies;
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    
+    <title>ExileInfo</title>
+    <meta name="description" content="Stats about current path of exile league.">
+    <meta name="author" content="Kaic Bastidas">
+    
+    <!-- jQuery -->
+    <script  src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script>
 
-$cursor = $aux->find();
-$array = array();
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+    <![endif]-->
+    <script>
+      function resizeIframe(obj) {
+        obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+      }
+    </script>
+    <script>
+        function sc_ascendancies() {
+            document.getElementById("content").innerHTML='<iframe class="col-md-12" src="sc_ascendancies.php" frameborder="0" scrolling="no" onload="resizeIframe(this)"></iframe>';
+        }
+    </script>
+</head>
 
-$array['cols'] = array(
-    // {id: 'task', label: 'Task', type: 'string'}
-    array(id => 'ascendancy', label => 'Ascendancy', type => 'string'),
-    array(id => 'amount', label => 'Amount', type => 'number')
-    );
-$array['rows'] = array();
-foreach ( $cursor as $id => $value )
-{
-    // {c:[{v: 'Work'}, {v: 11}]}
-    $aux = array(c => array(array(v => $value['Class']), array(v => $value['Count'])));
-    array_push($array['rows'], $aux);
-    //var_dump($value['Class']);
-    //var_dump($value['Count']);
-}
-//var_dump($array);
-$json = json_encode($array);
-//echo $json;
-?>
-</pre>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript">
-
-    // Load the Visualization API and the corechart package.
-    google.charts.load('current', {'packages':['corechart']});
-    
-    // Set a callback to run when the Google Visualization API is loaded.
-    google.charts.setOnLoadCallback(drawChart);
-    
-    // Callback that creates and populates a data table,
-    // instantiates the pie chart, passes in the data and
-    // draws it.
-    function drawChart() {
-    
-    // Create the data table.
-    var data = new google.visualization.DataTable(<? echo $json; ?>);
-    
-    // Set chart options
-    var options = {'title':'Ascendancy in Legacy',
-                   'width':500,
-                   'height':500};
-    
-    // Instantiate and draw our chart, passing in some options.
-    var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-    chart.draw(data, options);
-    }
-</script>
-
-<div id="chart_div"></div>
+<body>
+    <div class="container">
+        <div class="container">
+            <a class="btn btn-default" href ="#" onclick="sc_ascendancies()">SC Ascendancies</a>
+        </div>
+        <div class="col-md-12" id ="content"> </div>
+    </div>
+</body>
+</html>
