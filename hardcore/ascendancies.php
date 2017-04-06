@@ -1,5 +1,5 @@
 <?php
-require "../requires/connection.php";
+include($_SERVER['DOCUMENT_ROOT']."/requires/connection.php");
 
 $aux = $DB->HC_Statistic_Ascendancies;
 
