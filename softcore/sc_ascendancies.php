@@ -1,6 +1,5 @@
-<pre>
 <?php
-require "requires/connection.php";
+require $_SERVER['DOCUMENT_ROOT']."/requires/connection.php";
 
 $aux = $DB->SC_Statistic_Ascendancies;
 
@@ -22,7 +21,6 @@ foreach ( $cursor as $id => $value )
 $json = json_encode($array);
 
 ?>
-</pre>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
 
@@ -51,6 +49,4 @@ $json = json_encode($array);
     }
 </script>
 
-<div class="col-md-3"></div>
-<div class="col-md-6" id="chart_div" align='center'></div>
-<div class="col-md-3"></div>
+<div id="chart_div" align='center'></div>
