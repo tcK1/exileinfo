@@ -24,12 +24,13 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
 	<![endif]-->
 	
-	<script>
+	<script> // Change buttons based on the selected option
 		$(document).ready(function () {
 			$('.group').hide();
 			$('#option1').show();
 			$('#selectMe').change(function () {
-			$('.group').hide();
+				$('.content').empty(); // Clear the content div
+				$('.group').hide();
 				$('#'+$(this).val()).show();
 			})
 		});
@@ -65,7 +66,7 @@
 			</div>
 		</div> <!-- Menu end -->
 
-		<div class="container" id ="content"><!-- Graphs go here --></div>
+		<div class="container content" id ="content"><!-- Graphs go here --></div>
 	</div>
 </body>
 </html>
