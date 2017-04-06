@@ -1,6 +1,5 @@
 <?php
-//require $_SERVER['DOCUMENT_ROOT']."/requires/connection.php";
-require "../requires/connection.php";
+include_once("../requires/connection.php");
 
 $aux = $DB->SC_Statistic_Ascendancies;
 
