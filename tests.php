@@ -1,6 +1,6 @@
 <?php
 
-class Test extends PHPUnit_Framework_TestCase
+class tests extends PHPUnit_Framework_TestCase
 {
 	public function hasColsNRows_SC_Ascendancies() {
 		require("softcore/ascendancies.php");
