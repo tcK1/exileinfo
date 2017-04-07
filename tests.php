@@ -3,7 +3,7 @@ spl_autoload_register('autoloader');
 
 function autoloader($className)
 {
-    include(dirname(__FILE__)."/softcore/".$className.".php");
+    include(dirname(__FILE__)."/softcore/".'ascendancies'.".php");
 
 }
 //$this->assertArrayHasKey($array,'rows');
