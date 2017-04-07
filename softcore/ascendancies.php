@@ -11,7 +11,11 @@ class ascendancies {
             $this->data = iterator_to_array($cursor);
     }
     
-    public function get_data_as_array() {
+    public function get_data() {
+        return $this->data;
+    }
+    
+    public function get_data_as_array($data) {
         $array = array();
         $array['cols'] = array(
             // {id: 'task', label: 'Task', type: 'string'}
@@ -19,8 +23,7 @@ class ascendancies {
             array(id => 'amount', label => 'Amount', type => 'number')
             );
         $array['rows'] = array();
-        foreach ( $this->data as $id => $value )
-        {
+        foreach ( $data as $id => $value ) {
             // {c:[{v: 'Work'}, {v: 11}]}
             $aux = array(c => array(array(v => $value['Class']), array(v => $value['Count'])));
             array_push($array['rows'], $aux);
@@ -29,7 +32,9 @@ class ascendancies {
     }
     
     public function get_data_as_json() {
-        return json_encode($this->get_data_as_array());
+        return json_encode(
+            $this->get_data_as_array(
+                $this->get_data()));
     }
 }
 
