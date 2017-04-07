@@ -1,7 +1,6 @@
 <?php
-spl_autoload_register('autoloader');
-
-function autoloader($className) {
+spl_autoload_register('autoloadera');
+function autoloadera($className) {
     include(dirname(__FILE__)."/../requires/".$className.".php");
 }
 
@@ -10,10 +9,10 @@ class ascendancies {
     private $data;
     
     public function __construct() {
-            $con = new connection();
-            $collection = $con->get_db()->SC_Statistic_Ascendancies;
-            $cursor = $collection->find();
-            $this->data = iterator_to_array($cursor);
+        $con = new connection();
+        $collection = $con->get_db()->SC_Statistic_Ascendancies;
+        $cursor = $collection->find();
+        $this->data = iterator_to_array($cursor);
     }
     
     public function get_data() {

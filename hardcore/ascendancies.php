@@ -1,7 +1,7 @@
 <?php
-spl_autoload_register('autoloader');
+spl_autoload_register('autoloaderb');
 
-function autoloader($className) {
+function autoloaderb($className) {
     include(dirname(__FILE__)."/../requires/".$className.".php");
 }
 
