@@ -1,14 +1,10 @@
 <?php
-spl_autoload_register('autoloadera');
-function autoloadera($className) {
-    include(dirname(__FILE__)."/../requires/".$className.".php");
-}
-
 class ascendancies {
     
     private $data;
     
     public function __construct() {
+        include(dirname(__FILE__)."/../requires/connection.php");
         $con = new connection();
         $collection = $con->get_db()->SC_Statistic_Ascendancies;
         $cursor = $collection->find();

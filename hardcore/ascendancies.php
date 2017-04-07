@@ -1,19 +1,14 @@
 <?php
-spl_autoload_register('autoloaderb');
-
-function autoloaderb($className) {
-    include(dirname(__FILE__)."/../requires/".$className.".php");
-}
-
 class ascendancies {
     
     private $data;
     
     public function __construct() {
-            $con = new connection();
-            $collection = $con->get_db()->HC_Statistic_Ascendancies;
-            $cursor = $collection->find();
-            $this->data = iterator_to_array($cursor);
+        include(dirname(__FILE__)."/../requires/connection.php");
+        $con = new connection();
+        $collection = $con->get_db()->HC_Statistic_Ascendancies;
+        $cursor = $collection->find();
+        $this->data = iterator_to_array($cursor);
     }
     
     public function get_data() {

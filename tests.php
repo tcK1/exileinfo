@@ -8,7 +8,7 @@ class tests extends PHPUnit_Framework_TestCase {
 	}
   	
   	public function test_hasColsNRows_HC_Ascendancies() {
-  		//include(dirname(__FILE__)."/hardcore/ascendancies.php");
+  		include(dirname(__FILE__)."/hardcore/ascendancies.php");
 		//$class = new ascendancies(true);
   	}
 }
