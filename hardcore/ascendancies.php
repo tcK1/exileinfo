@@ -1,10 +1,15 @@
 <?php
+spl_autoload_register('autoloader');
+
+function autoloader($className) {
+    include(dirname(__FILE__)."/../requires/".$className.".php");
+}
+
 class ascendancies {
     
     private $data;
     
     public function __construct() {
-            include(dirname(__FILE__)."/../requires/connection.php");
             $con = new connection();
             $collection = $con->get_db()->HC_Statistic_Ascendancies;
             $cursor = $collection->find();
