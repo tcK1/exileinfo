@@ -1,25 +1,40 @@
 <?php
 include($_SERVER['DOCUMENT_ROOT']."/requires/connection.php");
 
-$aux = $DB->SC_Statistic_Ascendancies;
-
-$cursor = $aux->find();
-$array = array();
-
-$array['cols'] = array(
-    // {id: 'task', label: 'Task', type: 'string'}
-    array(id => 'ascendancy', label => 'Ascendancy', type => 'string'),
-    array(id => 'amount', label => 'Amount', type => 'number')
-    );
-$array['rows'] = array();
-foreach ( $cursor as $id => $value )
-{
-    // {c:[{v: 'Work'}, {v: 11}]}
-    $aux = array(c => array(array(v => $value['Class']), array(v => $value['Count'])));
-    array_push($array['rows'], $aux);
+class ascendancies {
+    
+    private $data;
+    
+    public function __construct() {
+        $con = new connection();
+        $collection = $con->get_db()->SC_Statistic_Ascendancies;
+        $cursor = $collection->find();
+        $this->data = iterator_to_array($cursor);
+    }
+    
+    public function get_data_as_array() {
+        $array = array();
+        $array['cols'] = array(
+            // {id: 'task', label: 'Task', type: 'string'}
+            array(id => 'ascendancy', label => 'Ascendancy', type => 'string'),
+            array(id => 'amount', label => 'Amount', type => 'number')
+            );
+        $array['rows'] = array();
+        foreach ( $this->data as $id => $value )
+        {
+            // {c:[{v: 'Work'}, {v: 11}]}
+            $aux = array(c => array(array(v => $value['Class']), array(v => $value['Count'])));
+            array_push($array['rows'], $aux);
+        }
+        return $array;
+    }
+    
+    public function get_data_as_json() {
+        return json_encode($this->get_data_as_array());
+    }
 }
-$json = json_encode($array);
 
+$class = new ascendancies();
 ?>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
@@ -36,7 +51,7 @@ $json = json_encode($array);
     function drawChart() {
     
     // Create the data table.
-    var data = new google.visualization.DataTable(<? echo $json; ?>);
+    var data = new google.visualization.DataTable(<? echo $class->get_data_as_json(); ?>);
     
     // Set chart options
     var options = {'title':'Ascendancy in Legacy',
