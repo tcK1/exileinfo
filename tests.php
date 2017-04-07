@@ -5,12 +5,12 @@ class tests extends PHPUnit_Framework_TestCase {
 	
 	public function test_hasColsNRows_SC_Ascendancies() {
 		include(dirname(__FILE__)."/softcore/ascendancies.php");
-		$class = new ascendancies();
+		$class = new ascendancies(true);
   	}
   	
   	public function test_hasColsNRows_HC_Ascendancies() {
 		include(dirname(__FILE__)."/hardcore/ascendancies.php");
-		$class = new ascendancies();
+		$class = new ascendancies(true);
   	}
 }
 
