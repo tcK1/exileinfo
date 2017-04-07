@@ -3,7 +3,7 @@ class ascendancies {
     
     private $data;
     
-    public function teste() {
+    public function __construct() {
         include(dirname(__FILE__)."/../requires/connection.php");
         $con = new connection();
         $collection = $con->get_db()->HC_Statistic_Ascendancies;
@@ -39,7 +39,6 @@ class ascendancies {
 }
 
 $class = new ascendancies();
-$class->teste();
 ?>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
