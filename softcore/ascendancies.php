@@ -1,11 +1,10 @@
 <?php
-include($_SERVER['DOCUMENT_ROOT']."/requires/connection.php");
-
 class ascendancies {
     
     private $data;
     
     public function __construct() {
+        include(dirname(__FILE__)."/../requires/connection.php");
         $con = new connection();
         $collection = $con->get_db()->SC_Statistic_Ascendancies;
         $cursor = $collection->find();
