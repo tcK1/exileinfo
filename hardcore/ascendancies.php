@@ -3,14 +3,12 @@ class ascendancies {
     
     private $data;
     
-    public function __construct($test) {
-        if(!$test) {
+    public function __construct() {
             include(dirname(__FILE__)."/../requires/connection.php");
             $con = new connection();
             $collection = $con->get_db()->SC_Statistic_Ascendancies;
             $cursor = $collection->find();
             $this->data = iterator_to_array($cursor);
-        }    
     }
     
     public function get_data_as_array() {
@@ -35,7 +33,7 @@ class ascendancies {
     }
 }
 
-$class = new ascendancies(false);
+$class = new ascendancies();
 ?>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
