@@ -1,5 +1,5 @@
 <?php
-include(dirname(__FILE__)."/../requires/formatter.php");
+include(dirname(__FILE__)."/requires/formatter.php");
 //$this->assertArrayHasKey($array,'rows');
 
 class tests extends PHPUnit_Framework_TestCase {
