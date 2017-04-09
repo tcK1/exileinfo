@@ -1,40 +1,27 @@
 <?php
+include(dirname(__FILE__)."/../requires/connection.php");
+include(dirname(__FILE__)."/../requires/formatter.php");
+
 class ascendancies {
     
-    private $data;
+    private $formatter;
     
     public function __construct() {
-        include(dirname(__FILE__)."/../requires/connection.php");
         $con = new connection();
         $collection = $con->get_db()->SC_Statistic_Ascendancies;
         $cursor = $collection->find();
-        $this->data = iterator_to_array($cursor);
+        $data = iterator_to_array($cursor);
+        $this->formatter = new formatter($data);
     }
     
-    public function get_data() {
-        return $this->data;
+    public function get_formatter() {
+        return $this->formatter;
     }
     
-    public function get_data_as_array($data) {
-        $array = array();
-        $array['cols'] = array(
-            // {id: 'task', label: 'Task', type: 'string'}
-            array(id => 'ascendancy', label => 'Ascendancy', type => 'string'),
-            array(id => 'amount', label => 'Amount', type => 'number')
-            );
-        $array['rows'] = array();
-        foreach ( $data as $id => $value ) {
-            // {c:[{v: 'Work'}, {v: 11}]}
-            $aux = array(c => array(array(v => $value['Class']), array(v => $value['Count'])));
-            array_push($array['rows'], $aux);
-        }
-        return $array;
-    }
-    
-    public function get_data_as_json() {
+    public function get_json() {
         return json_encode(
-            $this->get_data_as_array(
-                $this->get_data()));
+            $this->get_formatter()->get_ascendancies_array(
+                $this->data));
     }
 }
 
@@ -55,7 +42,7 @@ $class = new ascendancies();
     function drawChart() {
     
     // Create the data table.
-    var data = new google.visualization.DataTable(<? echo $class->get_data_as_json(); ?>);
+    var data = new google.visualization.DataTable(<? echo $class->get_json(); ?>);
     
     // Set chart options
     var options = {'title':'Ascendancy in Legacy',
