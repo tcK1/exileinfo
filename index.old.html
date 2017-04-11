@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	
+	<title>ExileInfo</title>
+	<meta name="description" content="Stats about current path of exile league.">
+	<meta name="author" content="Kaic Bastidas">
+	
+	<!-- jQuery -->
+	<script  src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	
+	<!--[if lt IE 9]>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+	<![endif]-->
+	
+	<script> // Change buttons based on the selected option
+		$(document).ready(function () {
+			$('.group').hide();
+			$('#option1').show();
+			$('#selectMe').change(function () {
+				$('.content').empty(); // Clear the content div
+				$('.group').hide();
+				$('#'+$(this).val()).show();
+			})
+		});
+	</script>
+	<script> // Show full graph
+		function resizeIframe(obj) {
+			obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+		}
+	</script>
+	<script> // Change content to the sc_ascendancies page
+		function sc_ascendancies() {
+			document.getElementById("content").innerHTML='<iframe class="container" src="api/ascendancies.php?league=legacy" frameborder="0" scrolling="no" onload="resizeIframe(this)"></iframe>';
+		}
+		function hc_ascendancies() {
+			document.getElementById("content").innerHTML='<iframe class="container" src="api/ascendancies.php?league=hclegacy" frameborder="0" scrolling="no" onload="resizeIframe(this)"></iframe>';
+		}
+	</script>
+</head>
+
+<body>
+	<div class="container" align='center'>
+		<div class="container"> <!-- Menu -->
+			<select class="form-control" id="selectMe">
+			  	<option value="option1">Legacy</option>
+			  	<option value="option2">Hardcore Legacy</option>
+			</select>
+			
+			<div id="option1" class="group">
+				<a class="btn btn-default" href ="#" onclick="sc_ascendancies()">Ascendancies</a>
+			</div>
+			<div id="option2" class="group">
+				<a class="btn btn-default" href ="#" onclick="hc_ascendancies()">Ascendancies</a>
+			</div>
+		</div> <!-- Menu end -->
+
+		<div class="container content" id ="content"><!-- Graphs go here --></div>
+	</div>
+</body>
+</html>

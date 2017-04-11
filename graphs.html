@@ -23,18 +23,19 @@
 	
 
     <style type="text/css">
-        html,body {
+        html,body{
         	background-color: #3c3c3c;
         	color: #c3c3c3;
-		    height: 100%;
+		    height: 100%
 		}
 
-		#header {
+		#header{
 		    width: 100%;
 		}
 
 		#holder {
 		    min-height: 100%;
+		    height: 50px;
 		    position:relative;
 		}
 
@@ -42,7 +43,7 @@
 		    /*padding-bottom: 100px;*/
 		}
 
-		#footer {
+		#footer{
 		    bottom: 0;
 		    left: 0;
 		    position: absolute;
@@ -51,16 +52,6 @@
 		.scroll {
             max-height: calc(100vh - 100px);
             overflow-y: auto;
-        }
-        #iframe {
-			min-height: calc(95vh - 100px);
-			width: 100%; 
-        }
-        .menu {
-        	border: 2px solid #c3c3c3;
-        }
-        .content {
-        	border: 2px solid #c3c3c3;
         }
     </style>
 
@@ -86,38 +77,47 @@
 	</script>
 	<script> // Change content to the respective page
 		function graphs() {
-			document.getElementById("content").innerHTML='<iframe id="iframe" src="graphs.html" frameborder="0" scrolling="no"></iframe>';
+			document.getElementById("content").innerHTML='<iframe class="container" src="graphs.html" frameborder="0" scrolling="no" onload="resizeIframe(this)"></iframe>';
 		}
 		function api() {
-			document.getElementById("content").innerHTML='<iframe class ="container" src="api.html" frameborder="0" scrolling="no" onload="resizeIframe(this)"></iframe>';
+			document.getElementById("content").innerHTML='<iframe class="container" src="api.html" frameborder="0" scrolling="no" onload="resizeIframe(this)"></iframe>';
+		}
+	</script>
+	<script> // Change content to the sc_ascendancies page
+		function sc_ascendancies() {
+			document.getElementById("content").innerHTML='<iframe class="container" src="api/ascendancies.php?league=legacy" frameborder="0" scrolling="no" onload="resizeIframe(this)"></iframe>';
+		}
+		function hc_ascendancies() {
+			document.getElementById("content").innerHTML='<iframe class="container" src="api/ascendancies.php?league=hclegacy" frameborder="0" scrolling="no" onload="resizeIframe(this)"></iframe>';
 		}
 	</script>
 </head>
 
 <body>
-	<div class ="container" id="holder">
-	    <div id="header"> <!-- Header -->
-	    	<h1>ExileInfo</h1>
-	    </div>
-	    <div id="body">
-			<div class="row">
-				<div class="col-3"> <!-- Menu -->
-					<nav class="nav flex-sm-column menu">
-						<a class="nav-link" href="#" onclick="graphs()">Graphs</a>
-						<a class="nav-link" href="#" onclick="api()">API Docs</a>
-					</nav>
-				</div>
-				<div class="col-9 scroll content"> <!-- Content -->
-					<div id ="content"><!-- Page content go here --></div>
-				</div>
+    <div id="holder">
+        <div id="header"> <!-- Header -->
+            Header
+        </div>
+        <div id="body"> <!-- Body -->
+        	<div class="container"> <!-- Menu -->
+			<select class="form-control" id="selectMe">
+			  	<option value="option1">Legacy</option>
+			  	<option value="option2">Hardcore Legacy</option>
+			</select>
+			
+			<div id="option1" class="group">
+				<a class="btn btn-default" href ="#" onclick="sc_ascendancies()">Ascendancies</a>
 			</div>
-	    </div>
-	    <div id="footer"> <!-- Footer -->
-	    	<p style="text-align:left;">
-			This site is fan-made and not affiliated with Grinding Gear Games in any way.
-			<span style="float:right;">2017 - Contact: kaicbastidas<i class="fa fa-at" aria-hidden="true"></i>gmail.com</span>
-			</p>
-	    </div>
+			<div id="option2" class="group">
+				<a class="btn btn-default" href ="#" onclick="hc_ascendancies()">Ascendancies</a>
+			</div>
+		</div> <!-- Menu end -->
+
+		<div class="container content" id ="content"><!-- Graphs go here --></div>
+        </div>
+        <div id="footer"> <!-- Footer -->
+        	Footer
+        </div>
 	</div>
 </body>
 </html>

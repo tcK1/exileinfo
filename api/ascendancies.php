@@ -5,13 +5,22 @@ include(dirname(__FILE__)."/../requires/formatter.php");
 class ascendancies {
     
     private $formatter;
+    private $title;
     
-    public function __construct() {
+    public function __construct($league) {
         $con = new connection();
-        $collection = $con->get_db()->SC_Statistic_Ascendancies;
+        $collection = $con->get_db()->$league;
         $cursor = $collection->find();
         $data = iterator_to_array($cursor);
         $this->formatter = new formatter($data);
+    }
+    
+    public function set_title($title) {
+        $this->title = $title;
+    }
+    
+    public function get_title() {
+        return $this->title;
     }
     
     public function get_formatter() {
@@ -20,12 +29,23 @@ class ascendancies {
     
     public function get_json() {
         return json_encode(
-            $this->get_formatter()->get_ascendancies_array(
-                $this->data));
+            $this->get_formatter()->get_ascendancies_array());
     }
 }
 
-$class = new ascendancies();
+if(isset($_GET["league"])){
+    switch($_GET["league"]) {
+        case "legacy":
+            $class = new ascendancies("SC_Statistic_Ascendancies");
+            $class->set_title("Ascendancies in Legacy");
+            break;
+        case "hclegacy":
+            $class = new ascendancies("HC_Statistic_Ascendancies");
+            $class->set_title("Ascendancies in Hardcore Legacy");
+            break;
+    }
+}
+
 ?>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
@@ -42,10 +62,10 @@ $class = new ascendancies();
     function drawChart() {
     
     // Create the data table.
-    var data = new google.visualization.DataTable(<? echo $class->get_json(); ?>);
+    var data = new google.visualization.DataTable('<? echo $class->get_json(); ?>');
     
     // Set chart options
-    var options = {'title':'Ascendancy in Legacy',
+    var options = {'title':'<? echo $class->get_title(); ?>',
                    'width':500,
                    'height':500};
     
