@@ -44,7 +44,6 @@ if(isset($_GET["league"])){
             $class->set_title("Ascendancies in Hardcore Legacy");
             break;
     }
-}
 
 ?>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -65,9 +64,35 @@ if(isset($_GET["league"])){
     var data = new google.visualization.DataTable('<? echo $class->get_json(); ?>');
     
     // Set chart options
-    var options = {'title':'<? echo $class->get_title(); ?>',
-                   'width':500,
-                   'height':500};
+    var options = { title:'<? echo $class->get_title(); ?>',
+                    width:500,
+                    height:500,
+                    backgroundColor: 'transparent',
+                    titleTextStyle: {
+                        color: '#c3c3c3'
+                    },
+                    hAxis: {
+                        textStyle: {
+                            color: '#c3c3c3'
+                        },
+                        titleTextStyle: {
+                            color: '#c3c3c3'
+                        }
+                    },
+                    vAxis: {
+                        textStyle: {
+                            color: '#c3c3c3'
+                        },
+                        titleTextStyle: {
+                            color: '#c3c3c3'
+                        }
+                    },
+                    legend: {
+                        textStyle: {
+                            color: '#c3c3c3'
+                        }
+                    } 
+    };
     
     // Instantiate and draw our chart, passing in some options.
     var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
@@ -76,3 +101,12 @@ if(isset($_GET["league"])){
 </script>
 
 <div id="chart_div" align='center'></div>
+
+<?php
+} else {
+    $response = array();
+    $response[error] = 'league not defined';
+    header('Content-Type: application/json');
+    echo json_encode($response);
+}
+?>

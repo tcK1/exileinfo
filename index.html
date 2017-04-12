@@ -14,13 +14,11 @@
 	<!-- jQuery -->
 	<script  src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script>
 
-	<script src="https://use.fontawesome.com/14677646d6.js"></script>
-	
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
-	
+	<script src="https://use.fontawesome.com/14677646d6.js"></script>
 
     <style type="text/css">
         html,body {
@@ -53,14 +51,14 @@
             overflow-y: auto;
         }
         #iframe {
-			min-height: calc(95vh - 100px);
+			min-height: calc(93vh - 100px);
 			width: 100%; 
         }
         .menu {
-        	border: 2px solid #c3c3c3;
+        	/*border: 2px solid #c3c3c3;*/
         }
         .content {
-        	border: 2px solid #c3c3c3;
+        	/*border: 2px solid #c3c3c3;*/
         }
     </style>
 
@@ -79,6 +77,11 @@
 			})
 		});
 	</script>
+	<script> // Clear the load image
+		function clear_load(){
+			document.getElementById("loading").innerHTML='';
+		}
+	</script>
 	<script> // Show full graph
 		function resizeIframe(obj) {
 			obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
@@ -86,10 +89,10 @@
 	</script>
 	<script> // Change content to the respective page
 		function graphs() {
-			document.getElementById("content").innerHTML='<iframe id="iframe" src="graphs.html" frameborder="0" scrolling="no"></iframe>';
+			document.getElementById("content").innerHTML='<iframe id="iframe" src="graphs.html" frameborder="0" scrolling="no" onload="clear_load()"></iframe><div id="loading"><img src="gif.gif" class="pull-right img-responsive"></div>';
 		}
 		function api() {
-			document.getElementById("content").innerHTML='<iframe class ="container" src="api.html" frameborder="0" scrolling="no" onload="resizeIframe(this)"></iframe>';
+			document.getElementById("content").innerHTML='<iframe id="iframe" src="api.html" frameborder="0" scrolling="no" onload="clear_load()"></iframe><div id="loading"><img src="gif.gif" class="pull-right img-responsive"></div>';
 		}
 	</script>
 </head>
@@ -108,7 +111,8 @@
 					</nav>
 				</div>
 				<div class="col-9 scroll content"> <!-- Content -->
-					<div id ="content"><!-- Page content go here --></div>
+					<div class="" id ="content"><!-- Page content go here -->
+					</div>
 				</div>
 			</div>
 	    </div>

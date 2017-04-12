@@ -75,20 +75,17 @@
 			obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
 		}
 	</script>
-	<script> // Change content to the respective page
-		function graphs() {
-			document.getElementById("content").innerHTML='<iframe class="container" src="graphs.html" frameborder="0" scrolling="no" onload="resizeIframe(this)"></iframe>';
-		}
-		function api() {
-			document.getElementById("content").innerHTML='<iframe class="container" src="api.html" frameborder="0" scrolling="no" onload="resizeIframe(this)"></iframe>';
+	<script> // Clear the load image
+		function clear_load(){
+			document.getElementById("loading").innerHTML='';
 		}
 	</script>
 	<script> // Change content to the sc_ascendancies page
 		function sc_ascendancies() {
-			document.getElementById("content").innerHTML='<iframe class="container" src="api/ascendancies.php?league=legacy" frameborder="0" scrolling="no" onload="resizeIframe(this)"></iframe>';
+			document.getElementById("content").innerHTML='<iframe class="container" src="api/ascendancies.php?league=legacy" frameborder="0" scrolling="no" onload="resizeIframe(this)"></iframe><div id="loading"><p class="text-center"><img src="gif.gif" class="img-responsive"></p></div>';
 		}
 		function hc_ascendancies() {
-			document.getElementById("content").innerHTML='<iframe class="container" src="api/ascendancies.php?league=hclegacy" frameborder="0" scrolling="no" onload="resizeIframe(this)"></iframe>';
+			document.getElementById("content").innerHTML='<iframe class="container" src="api/ascendancies.php?league=hclegacy" frameborder="0" scrolling="no" onload="resizeIframe(this)"></iframe><div id="loading"><p class="text-center"><img src="gif.gif" class="img-responsive"></p></div>';
 		}
 	</script>
 </head>
@@ -112,8 +109,7 @@
 				<a class="btn btn-default" href ="#" onclick="hc_ascendancies()">Ascendancies</a>
 			</div>
 		</div> <!-- Menu end -->
-
-		<div class="container content" id ="content"><!-- Graphs go here --></div>
+		<div class="container" id ="content"><!-- Graphs go here --></div>
         </div>
         <div id="footer"> <!-- Footer -->
         	Footer
