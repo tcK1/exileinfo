@@ -60,47 +60,58 @@ if(isset($_GET["league"])){
     // draws it.
     function drawChart() {
     
-    // Create the data table.
-    var data = new google.visualization.DataTable('<? echo $class->get_json(); ?>');
-    
-    // Set chart options
-    var options = { title:'<? echo $class->get_title(); ?>',
-                    width:500,
-                    height:500,
-                    backgroundColor: 'transparent',
-                    titleTextStyle: {
-                        color: '#c3c3c3'
-                    },
-                    hAxis: {
-                        textStyle: {
-                            color: '#c3c3c3'
-                        },
+        // Create the data table.
+        var data = new google.visualization.DataTable('<? echo $class->get_json(); ?>');
+        
+        // Set chart options
+        var options = { title:'<? echo $class->get_title(); ?>',
+                        backgroundColor: 'transparent',
                         titleTextStyle: {
                             color: '#c3c3c3'
-                        }
-                    },
-                    vAxis: {
-                        textStyle: {
-                            color: '#c3c3c3'
                         },
-                        titleTextStyle: {
-                            color: '#c3c3c3'
-                        }
-                    },
-                    legend: {
-                        textStyle: {
-                            color: '#c3c3c3'
-                        }
-                    } 
-    };
-    
-    // Instantiate and draw our chart, passing in some options.
-    var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-    chart.draw(data, options);
+                        hAxis: {
+                            textStyle: {
+                                color: '#c3c3c3'
+                            },
+                            titleTextStyle: {
+                                color: '#c3c3c3'
+                            }
+                        },
+                        vAxis: {
+                            textStyle: {
+                                color: '#c3c3c3'
+                            },
+                            titleTextStyle: {
+                                color: '#c3c3c3'
+                            }
+                        },
+                        legend: {
+                            textStyle: {
+                                color: '#c3c3c3'
+                            }
+                        } 
+        };
+        
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+        
+        function resizeChart () {
+            chart.draw(data, options);
+        }
+        if (document.addEventListener) {
+            window.addEventListener('resize', resizeChart);
+        }
+        else if (document.attachEvent) {
+            window.attachEvent('onresize', resizeChart);
+        }
+        else {
+            window.resize = resizeChart;
+        }
     }
 </script>
 
-<div id="chart_div" align='center'></div>
+<div id="chart_div" align='center' style="width: 100%; height: 100%;"></div>
 
 <?php
 } else {

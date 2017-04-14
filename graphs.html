@@ -11,50 +11,24 @@
 	<meta name="author" content="Kaic Bastidas">
 
 
+	<!-- FontAwsome -->
+	<script src="https://use.fontawesome.com/14677646d6.js"></script>
+	
+	<!-- GoogleFont -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans&amp;subset=latin-ext" rel="stylesheet">
+
 	<!-- jQuery -->
 	<script  src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script>
 
-	<script src="https://use.fontawesome.com/14677646d6.js"></script>
-	
+	<!-- Bootstrap -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
+	<!-- ExileInfo -->
+	<script src="style/exileinfo.js"></script>
+	<link rel="stylesheet" href="style/exileinfo.css"/>
 	
-
-    <style type="text/css">
-        html,body{
-        	background-color: #3c3c3c;
-        	color: #c3c3c3;
-		    height: 100%
-		}
-
-		#header{
-		    width: 100%;
-		}
-
-		#holder {
-		    min-height: 100%;
-		    height: 50px;
-		    position:relative;
-		}
-
-		#body {
-		    /*padding-bottom: 100px;*/
-		}
-
-		#footer{
-		    bottom: 0;
-		    left: 0;
-		    position: absolute;
-		    right: 0;
-		}
-		.scroll {
-            max-height: calc(100vh - 100px);
-            overflow-y: auto;
-        }
-    </style>
-
 	<!--[if lt IE 9]>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
 	<![endif]-->
@@ -70,22 +44,14 @@
 			})
 		});
 	</script>
-	<script> // Show full graph
-		function resizeIframe(obj) {
-			obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
-		}
-	</script>
-	<script> // Clear the load image
-		function clear_load(){
-			document.getElementById("loading").innerHTML='';
-		}
-	</script>
 	<script> // Change content to the sc_ascendancies page
 		function sc_ascendancies() {
-			document.getElementById("content").innerHTML='<iframe class="container" src="api/ascendancies.php?league=legacy" frameborder="0" scrolling="no" onload="resizeIframe(this)"></iframe><div id="loading"><p class="text-center"><img src="gif.gif" class="img-responsive"></p></div>';
+			start_load();
+			document.getElementById("content").innerHTML='<iframe id="iframe" src="api/ascendancies.php?league=legacy" frameborder="0" scrolling="no" onload="end_load()"></iframe>';
 		}
 		function hc_ascendancies() {
-			document.getElementById("content").innerHTML='<iframe class="container" src="api/ascendancies.php?league=hclegacy" frameborder="0" scrolling="no" onload="resizeIframe(this)"></iframe><div id="loading"><p class="text-center"><img src="gif.gif" class="img-responsive"></p></div>';
+			start_load();
+			document.getElementById("content").innerHTML='<iframe id="iframe" src="api/ascendancies.1.php?league=hclegacy" frameborder="0" scrolling="no" onload="end_load()"></iframe>';
 		}
 	</script>
 </head>
