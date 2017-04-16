@@ -7,8 +7,6 @@ RUN mkdir -p /usr/local/openssl/include/openssl/ && \
     ln -s /usr/lib/x86_64-linux-gnu/libssl.a /usr/local/openssl/lib/libssl.a && \
     ln -s /usr/lib/x86_64-linux-gnu/libssl.so /usr/local/openssl/lib/
 
-RUN sudo apt-get install pkg-config
-
 RUN pecl install mongodb
 
 RUN a2enmod rewrite
