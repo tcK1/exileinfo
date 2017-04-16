@@ -12,7 +12,13 @@ RUN mkdir -p /usr/local/openssl/include/openssl/ && \
     ln -s /usr/lib/x86_64-linux-gnu/libssl.a /usr/local/openssl/lib/libssl.a && \
     ln -s /usr/lib/x86_64-linux-gnu/libssl.so /usr/local/openssl/lib/
 
-RUN pecl install mongodb
+RUN apt-get update
+
+RUN apt-get install -y autoconf g++ make openssl libssl-dev libcurl4-openssl-dev pkg-config libsasl2-dev libpcre3-dev
+
+RUN pecl install mongo
+
+RUN docker-php-ext-enable mongo
 
 RUN a2enmod rewrite
 
