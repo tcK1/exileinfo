@@ -1,8 +1,8 @@
 FROM php:5.6-apache
 MAINTAINER ticokaic
 
-RUN brew install openssl
-    && brew link openssl --force
+RUN brew install openssl && 
+RUN brew link openssl --force
 
 RUN brew install pkg-config
 
