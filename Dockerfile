@@ -1,10 +1,9 @@
-FROM php:5.6-apache
+FROM php:$TRAVIS_PHP_VERSION-apache
 MAINTAINER ticokaic
 
 ARG mongodburi
 
 RUN pecl install mongodb
-RUN echo $mongodburi
 RUN echo "export MONGODBURI="$mongodburi"" >> ~/.bashrc
 
 COPY ./php.ini /usr/local/etc/php/
