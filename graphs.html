@@ -38,7 +38,7 @@
 			$('.group').hide();
 			$('#option1').show();
 			$('#selectMe').change(function () {
-				$('.content').empty(); // Clear the content div
+				$('#content').empty(); // Clear the content div
 				$('.group').hide();
 				$('#'+$(this).val()).show();
 			})
