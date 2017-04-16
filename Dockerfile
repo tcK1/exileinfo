@@ -1,6 +1,11 @@
 FROM php:5.6-apache
 MAINTAINER ticokaic
 
+RUN apt-get update
+
+RUN apt-get install libssl-dev
+RUN apt-get install pkg-config
+
 RUN mkdir -p /usr/local/openssl/include/openssl/ && \
     ln -s /usr/include/openssl/evp.h /usr/local/openssl/include/openssl/evp.h && \
     mkdir -p /usr/local/openssl/lib/ && \
