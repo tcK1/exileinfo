@@ -12,7 +12,7 @@ before_install:
   - sudo apt-get update
   - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-engine
   - docker build -t ticokaic/exileinfo .
-  - docker run -d -e MONGODBURI="$MONGOURI" ticokaic/exileinfo 
+  - docker run -d ticokaic/exileinfo 
   
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
