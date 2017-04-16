@@ -4,6 +4,7 @@ MAINTAINER ticokaic
 ARG mongodburi
 
 RUN pecl install mongodb
+RUN echo $mongodburi
 RUN echo "export MONGODBURI="$mongodburi"" >> ~/.bashrc
 
 COPY ./php.ini /usr/local/etc/php/
