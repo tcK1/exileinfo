@@ -1,49 +1,64 @@
 <?php
+/**
+* Class for the ascendancies graphs.
+* Creates a new connection to get the collection and then creates a formatter with the data.
+**/
+
 include(dirname(__FILE__)."/../requires/connection.php");
 include(dirname(__FILE__)."/../requires/formatter.php");
 
 class ascendancies {
     
+    /**
+     * @var formatter
+     **/
     private $formatter;
+    
+    /**
+     * @var string
+     **/
     private $title;
     
+    /**
+     * @param string $league
+     **/
     public function __construct($league) {
-        $con = new connection();
-        $collection = $con->get_db()->$league;
-        $cursor = $collection->find();
-        $data = iterator_to_array($cursor);
-        $this->formatter = new formatter($data);
+        $con = new connection($league);
+        
+        // Creates new formatter based on the database data.
+        $this->formatter = new formatter($con->get_data());
+        
+        // Sets the graph title based on the league
+        switch($league) {
+            case "legacy":
+                $this->title = "Ascendancies in Legacy";
+                break;
+            case "hclegacy":
+                $this->title = "Ascendancies in Hardcore Legacy";
+                break;
+        }
     }
     
-    public function set_title($title) {
-        $this->title = $title;
-    }
-    
+    /**
+     * @return string
+     **/
     public function get_title() {
         return $this->title;
     }
     
-    public function get_formatter() {
-        return $this->formatter;
-    }
-    
+    /**
+     * @return json
+     **/
     public function get_json() {
         return json_encode(
-            $this->get_formatter()->get_ascendancies_array());
+            // Gets the needed data in the right format.
+            $this->formatter->get_ascendancies_array()
+        );
     }
 }
 
 if(isset($_GET["league"])){
-    switch($_GET["league"]) {
-        case "legacy":
-            $class = new ascendancies("SC_Statistic_Ascendancies");
-            $class->set_title("Ascendancies in Legacy");
-            break;
-        case "hclegacy":
-            $class = new ascendancies("HC_Statistic_Ascendancies");
-            $class->set_title("Ascendancies in Hardcore Legacy");
-            break;
-    }
+    $class = new ascendancies("legacy");
 
 ?>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -115,9 +130,9 @@ if(isset($_GET["league"])){
 
 <?php
 } else {
+    header('Content-Type: application/json');
     $response = array();
     $response[error] = 'league not defined';
-    header('Content-Type: application/json');
     echo json_encode($response);
 }
 ?>
