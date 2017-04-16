@@ -3,8 +3,8 @@ MAINTAINER ticokaic
 
 RUN apt-get update
 
-RUN apt-get install libssl-dev
-RUN apt-get install pkg-config
+RUN apt-get install libssl-dev -y
+RUN apt-get install pkg-config -y
 
 RUN mkdir -p /usr/local/openssl/include/openssl/ && \
     ln -s /usr/include/openssl/evp.h /usr/local/openssl/include/openssl/evp.h && \
