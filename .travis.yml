@@ -1,7 +1,17 @@
+sudo: required
+
 language: php
+
+services:
+  - docker
+  
 php:
   - 5.4
   - 5.5
   - 5.6
+  
+before_install:
+  - docker build -t ticokaic/exileinfo .
+  - docker run -d ticokaic/exileinfo 
+  
 script: phpunit tests.php
-
