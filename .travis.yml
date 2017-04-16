@@ -11,7 +11,13 @@ php:
   - 5.6
   
 before_install:
-  - docker build -t ticokaic/exileinfo .
+  - docker build --build-arg mongodburi="$MONGOURI" -t ticokaic/exileinfo .
   - docker run -d ticokaic/exileinfo 
+  
+after_success:
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+    docker push ticokaic/exileinfo;
+    fi
   
 script: phpunit tests.php
