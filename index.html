@@ -10,21 +10,20 @@
 	<meta name="description" content="Stats about current path of exile league.">
 	<meta name="author" content="Kaic Bastidas">
 
-
-	<!-- FontAwsome -->
-	<script src="https://use.fontawesome.com/14677646d6.js"></script>
-	
-	<!-- GoogleFont -->
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans&amp;subset=latin-ext" rel="stylesheet">
-
 	<!-- jQuery -->
 	<script  src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script>
 
 	<!-- Bootstrap -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>    
 
+    <!-- BootstrapSelect -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
+
+	<!-- FontAwsome -->
+	<script src="https://use.fontawesome.com/14677646d6.js"></script>
+	
 	<!-- ExileInfo -->
 	<script src="style/exileinfo.js"></script>
 	<link rel="stylesheet" href="style/exileinfo.css"/>
@@ -33,48 +32,112 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
 	<![endif]-->
 
-	<script> // Change content to the respective page
-		function graphs() {
-			start_load();
-			document.getElementById("content").innerHTML='<iframe id="iframe" src="graphs.html" frameborder="0" scrolling="no" onload="end_load()"></iframe>';
-		}
-		function api() {
-			start_load();
-			document.getElementById("content").innerHTML='<iframe id="iframe" src="docs.html" frameborder="0" scrolling="no" onload="end_load()">';
-		}
-	</script>
 </head>
 
 <body>
-	<div class ="container" id="holder">
-	    <div id="header"> <!-- Header -->
-	    	<h1>ExileInfo</h1>
-	    </div>
-	    <div id="body">
+	<header>
+		<div class="container">
 			<div class="row">
-				<div class="col-sm-3"> <!-- Menu -->
-					<nav class="nav flex-sm-column menu">
-						<a class="nav-link" href="#" onclick="graphs()">Graphs</a>
-						<a class="nav-link" href="#" onclick="api()">API Docs</a>
-					</nav>
-					<div id="loading"></div>
+				<div class="col-sm-4 logo">
+					ExileInfo <span class="badge">WIP</span>
 				</div>
-				<div class="col-sm-9 scroll content"> <!-- Content -->
-					<div class="" id ="content"><!-- Page content go here -->
+				<div class="col-sm-8">
+					<div class="alert alert-info" role="alert">
+						<strong>Hello there!</strong> We are currently under construction, so things can go wild out of nowhere. <a href="info" class="alert-link">Info</a>.
 					</div>
 				</div>
 			</div>
-	    </div>
-	    <div id="footer"> <!-- Footer -->
-	    	<div class="row">
-	    		<div class="col-sm-8">
-					This site is fan-made and not affiliated with Grinding Gear Games in any way.
+		</div>
+	</header>
+	<main>
+		<div class="container"><!-- Page content go here -->
+			<div class="row">
+				<div class="col-sm-4">
+					<select class="selectpicker form-control div-toggle" title="Leagues" data-target=".options" data-container="body">
+						<optgroup label="Normal">
+							<option value="legacy" data-show=".legacy">Legacy</option>
+							<option value="hclegacy" data-show=".hclegacy">HC Legacy</option>
+						</optgroup>
+						<optgroup label="SFF" disabled>
+							<option value="ssflegacy" data-subtext="Soon™" data-show=".ssflegacy">SSF Legacy</option>
+							<option value="ssfhclegacy" data-subtext="Soon™" data-show=".ssfhclegacy">SSF HC Legacy</option>
+						</optgroup>
+					</select>
+					<div class="graphpicker">
+						<div class="options">
+							<div class="text-center">
+								<i class="fa fa-chevron-up fa-3x" aria-hidden="true"></i>
+								<br>
+								Choose your league.
+							</div>
+							<!-- Legacy Options -->
+							<div class="legacy hide">
+								<ul class="nav nav-tabs">
+									<li class="active"><a data-toggle="tab" href="#simple">Simple</a></li>
+									<li><a data-toggle="tab" href="#advanced">Advanced</a></li>
+								</ul>
+								
+								<div class="tab-content">
+									<div id="simple" class="tab-pane fade in active">
+										<br>
+										<div class="thumbnail text-center">
+											<h4>Ascendancies</h4>
+											<div class="btn-group btn-group-justified" role="group" aria-label="Player quantity">
+												<a class="btn btn-default" onclick="src('api/ascendancies?league=hclegacy')">10</a>
+												<a class="btn btn-default">50</a>
+												<a class="btn btn-default">100</a>
+												<a class="btn btn-default">500</a>
+											</div>
+										</div>
+										
+									</div>
+									<div id="advanced" class="tab-pane fade">
+										Advanced graphs options.
+									</div>
+								</div>
+							</div>
+							<!-- End Legacy Options -->
+							<!-- HC Legacy Options -->
+							<div class="hclegacy hide">
+								<ul class="nav nav-tabs">
+									<li class="active"><a data-toggle="tab" href="#simple">Simple</a></li>
+									<li><a data-toggle="tab" href="#advanced">Advanced</a></li>
+								</ul>
+								
+								<div class="tab-content">
+									<div id="simple" class="tab-pane fade in active">
+										Simple graphs options.
+									</div>
+									<div id="advanced" class="tab-pane fade">
+										Advanced graphs options.
+									</div>
+								</div>
+							</div>
+							<!-- End HC Legacy Options -->
+						</div>
+					</div>
 				</div>
-				<div class="col-sm-4 contact">
-					2017 - Contact: kaicbastidas<i class="fa fa-at"></i>gmail.com
+				<!-- Content -->
+				<div class="col-sm-8">
+					<div class="text-center">
+						<iframe id="graph" src="" frameborder="0" scrolling="no"></iframe>
+					</div>
+				</div>
+				<!-- End Content -->
+			</div>
+		</div>
+	</main>
+	<footer>
+		<div class ="container">
+			<div class="row">
+				<div class="col-sm-8">
+					This site is fan-made and not affiliated with Grinding Gear Games in any way. Check out our <a href="docs">API</a>.
+				</div>
+				<div class="col-sm-4">
+					<span class="pull-right">2017 - <a href="https://github.com/tcK1">Github</a></span>
 				</div>
 			</div>
-	    </div>
-	</div>
+		</div>
+	</footer>
 </body>
 </html>
