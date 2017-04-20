@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" ng-app="ExileInfo">
 <head>
 	<!-- Required meta tags -->
     <meta charset="utf-8">
@@ -9,52 +9,39 @@
 	<title>ExileInfo</title>
 	<meta name="description" content="Stats about current path of exile league.">
 	<meta name="author" content="Kaic Bastidas">
-
-	<!-- jQuery -->
-	<script  src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script>
+	<base href="/">
 
 	<!-- Bootstrap -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>    
 
     <!-- BootstrapSelect -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
 
-	<!-- FontAwsome -->
-	<script src="https://use.fontawesome.com/14677646d6.js"></script>
-	
 	<!-- GoogleFonts -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 	
 	<!-- ExileInfo -->
-	<script src="style/exileinfo.js"></script>
 	<link rel="stylesheet" href="style/exileinfo.css"/>
-
-	<!--[if lt IE 9]>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
-	<![endif]-->
-
 </head>
 
-<body>
+<body ng-controller="navCtrl">
 	<header class="container">
 		<a class="logo" href="/">
 			<span class="exile">EXILE</span>
 			<span class="info">INFO</span>
 		</a>
-		<select class="selectpicker pull-right div-toggle" title="Leagues" data-target=".options" data-container="body" data-style="choose">
-			<optgroup class="" label="Normal">
-				<option value="legacy" data-show=".legacy" selected>Legacy</option>
-				<option value="hclegacy" data-show=".hclegacy">HC Legacy</option>
+		<select class="selectpicker pull-right div-toggle" title="Leagues" data-style="choose" ng-model="currentPage" ng-change="go(currentPage)" >
+			<optgroup label="Normal">
+				<option value="legacy" selected>Legacy</option>
+				<option value="hclegacy">HC Legacy</option>
 			</optgroup>
-			<optgroup class="" label="SFF" disabled>
-				<option value="ssflegacy" data-subtext="Soon™" data-show=".ssflegacy">SSF Legacy</option>
-				<option value="ssfhclegacy" data-subtext="Soon™" data-show=".ssfhclegacy">SSF HC Legacy</option>
+			<optgroup label="SFF" disabled>
+				<option value="ssflegacy" data-subtext="Soon™">SSF Legacy</option>
+				<option value="ssfhclegacy" data-subtext="Soon™">SSF HC Legacy</option>
 			</optgroup>
-			<optgroup class="" label="Permanent" disabled>
-				<option value="standard" data-subtext="Soon™" data-show=".standard">Standard</option>
-				<option value="hardcore" data-subtext="Soon™" data-show=".hardcore">Hardcore</option>
+			<optgroup label="Permanent" disabled>
+				<option value="standard" data-subtext="Soon™">Standard</option>
+				<option value="hardcore" data-subtext="Soon™">Hardcore</option>
 			</optgroup>
 		</select>
 	</header>
@@ -64,58 +51,12 @@
 				<span class="badge">WIP</span>
 				<strong>Hello there!</strong> We are currently under construction, so things can go wild out of nowhere. <a href="info" class="alert-link">Info</a>.
 			</div>
-			<div class="graphpicker">
-				<div class="options">
-					<!-- Legacy Options -->
-					<div class="legacy hide">
-						<ul class="nav nav-tabs">
-							<li class="active"><a data-toggle="tab" href="#simple">Simple</a></li>
-							<li><a data-toggle="tab" href="#advanced">Advanced</a></li>
-						</ul>
-						
-						<div class="tab-content">
-							<div id="simple" class="tab-pane fade in active">
-								<br>
-								<div class="thumbnail text-center">
-									<h4>Ascendancies</h4>
-									<div class="btn-group btn-group-justified" role="group" aria-label="Player quantity">
-										<a class="btn btn-default" onclick="src('api/ascendancies?league=hclegacy')">10</a>
-										<a class="btn btn-default">50</a>
-										<a class="btn btn-default">100</a>
-										<a class="btn btn-default">500</a>
-									</div>
-								</div>
-								
-							</div>
-							<div id="advanced" class="tab-pane fade">
-								Advanced graphs options.
-							</div>
-						</div>
-					</div>
-					<!-- End Legacy Options -->
-					<!-- HC Legacy Options -->
-					<div class="hclegacy hide">
-						<ul class="nav nav-tabs">
-							<li class="active"><a data-toggle="tab" href="#simple">Simple</a></li>
-							<li><a data-toggle="tab" href="#advanced">Advanced</a></li>
-						</ul>
-						
-						<div class="tab-content">
-							<div id="simple" class="tab-pane fade in active">
-								Simple graphs options.
-							</div>
-							<div id="advanced" class="tab-pane fade">
-								Advanced graphs options.
-							</div>
-						</div>
-					</div>
-					<!-- End HC Legacy Options -->
-				</div>
-			</div>
-		
-			<div class="text-center">
-				<iframe id="graph" src="" frameborder="0" scrolling="no"></iframe>
-			</div>
+			
+			<!-- View route -->
+			<ng-view>
+				<p class="text-center"><img src="gif.gif"></img></p>
+			</ng-view>
+			<!-- View route -->
 			<!-- End Content -->
 		</div>
 	</main>
@@ -125,5 +66,28 @@
 			<span class="pull-right">2017 - <a href="https://github.com/tcK1">Github</a></span>
 		</div>
 	</footer>
+	
+	<!-- jQuery -->
+	<script  src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script>
+
+	<!-- AngularJS and ngRoute -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-route.min.js"></script>
+	
+	<!-- Bootstrap -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>    
+	
+	<!-- BootstrapSelect -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
+
+	<!-- FontAwsome -->
+	<script src="https://use.fontawesome.com/14677646d6.js"></script>
+
+	<!-- ExileInfo -->
+	<script src="style/exileinfo.js"></script>
+
+	<!--[if lt IE 9]>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+	<![endif]-->
 </body>
 </html>

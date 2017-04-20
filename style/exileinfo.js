@@ -1,14 +1,21 @@
-// Change div content based on select
-$(document).on('change', '.div-toggle', function() {
-    var target = $(this).data('target');
-    var show = $("option:selected", this).data('show');
-    $(target).children().addClass('hide');
-    $(show).removeClass('hide');
+var app = angular.module("ExileInfo", ['ngRoute']);
+
+app.config(function($routeProvider, $locationProvider){
+    $routeProvider
+        .when('/legacy', {
+            templateUrl: "leagues/legacy.html"
+        })
+        .when('/hclegacy', {
+            templateUrl: "leagues/hclegacy.html"
+        })
+        .otherwise({ redirectTo: '/legacy' });
+    // Remove comment when htacces is right
+    // $locationProvider.html5Mode(true);
 });
-$(document).ready(function(){
-    $('.div-toggle').trigger('change');
+
+app.controller('navCtrl', function ($location, $scope) {
+  $scope.currentPage = "legacy";
+  $scope.go = function (page) {
+    $location.path('/' + page);
+  };
 });
-// Change iframe src
-function src(loc) {
-    document.getElementById('graph').src = loc;
-}
