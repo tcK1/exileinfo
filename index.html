@@ -24,6 +24,9 @@
 	<!-- FontAwsome -->
 	<script src="https://use.fontawesome.com/14677646d6.js"></script>
 	
+	<!-- GoogleFonts -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	
 	<!-- ExileInfo -->
 	<script src="style/exileinfo.js"></script>
 	<link rel="stylesheet" href="style/exileinfo.css"/>
@@ -35,108 +38,91 @@
 </head>
 
 <body>
-	<header>
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-4 logo">
-					ExileInfo <span class="badge">WIP</span>
-				</div>
-				<div class="col-sm-8">
-					<div class="alert alert-info" role="alert">
-						<strong>Hello there!</strong> We are currently under construction, so things can go wild out of nowhere. <a href="info" class="alert-link">Info</a>.
-					</div>
-				</div>
-			</div>
-		</div>
+	<header class="container">
+		<a class="logo" href="/">
+			<span class="exile">EXILE</span>
+			<span class="info">INFO</span>
+		</a>
+		<select class="selectpicker pull-right div-toggle" title="Leagues" data-target=".options" data-container="body" data-style="choose">
+			<optgroup class="" label="Normal">
+				<option value="legacy" data-show=".legacy" selected>Legacy</option>
+				<option value="hclegacy" data-show=".hclegacy">HC Legacy</option>
+			</optgroup>
+			<optgroup class="" label="SFF" disabled>
+				<option value="ssflegacy" data-subtext="Soon™" data-show=".ssflegacy">SSF Legacy</option>
+				<option value="ssfhclegacy" data-subtext="Soon™" data-show=".ssfhclegacy">SSF HC Legacy</option>
+			</optgroup>
+			<optgroup class="" label="Permanent" disabled>
+				<option value="standard" data-subtext="Soon™" data-show=".standard">Standard</option>
+				<option value="hardcore" data-subtext="Soon™" data-show=".hardcore">Hardcore</option>
+			</optgroup>
+		</select>
 	</header>
 	<main>
 		<div class="container"><!-- Page content go here -->
-			<div class="row">
-				<div class="col-sm-4">
-					<select class="selectpicker form-control div-toggle" title="Leagues" data-target=".options" data-container="body">
-						<optgroup label="Normal">
-							<option value="legacy" data-show=".legacy">Legacy</option>
-							<option value="hclegacy" data-show=".hclegacy">HC Legacy</option>
-						</optgroup>
-						<optgroup label="SFF" disabled>
-							<option value="ssflegacy" data-subtext="Soon™" data-show=".ssflegacy">SSF Legacy</option>
-							<option value="ssfhclegacy" data-subtext="Soon™" data-show=".ssfhclegacy">SSF HC Legacy</option>
-						</optgroup>
-					</select>
-					<div class="graphpicker">
-						<div class="options">
-							<div class="text-center">
-								<i class="fa fa-chevron-up fa-3x" aria-hidden="true"></i>
+			<div class="alert alert-info" role="alert">
+				<span class="badge">WIP</span>
+				<strong>Hello there!</strong> We are currently under construction, so things can go wild out of nowhere. <a href="info" class="alert-link">Info</a>.
+			</div>
+			<div class="graphpicker">
+				<div class="options">
+					<!-- Legacy Options -->
+					<div class="legacy hide">
+						<ul class="nav nav-tabs">
+							<li class="active"><a data-toggle="tab" href="#simple">Simple</a></li>
+							<li><a data-toggle="tab" href="#advanced">Advanced</a></li>
+						</ul>
+						
+						<div class="tab-content">
+							<div id="simple" class="tab-pane fade in active">
 								<br>
-								Choose your league.
-							</div>
-							<!-- Legacy Options -->
-							<div class="legacy hide">
-								<ul class="nav nav-tabs">
-									<li class="active"><a data-toggle="tab" href="#simple">Simple</a></li>
-									<li><a data-toggle="tab" href="#advanced">Advanced</a></li>
-								</ul>
-								
-								<div class="tab-content">
-									<div id="simple" class="tab-pane fade in active">
-										<br>
-										<div class="thumbnail text-center">
-											<h4>Ascendancies</h4>
-											<div class="btn-group btn-group-justified" role="group" aria-label="Player quantity">
-												<a class="btn btn-default" onclick="src('api/ascendancies?league=hclegacy')">10</a>
-												<a class="btn btn-default">50</a>
-												<a class="btn btn-default">100</a>
-												<a class="btn btn-default">500</a>
-											</div>
-										</div>
-										
-									</div>
-									<div id="advanced" class="tab-pane fade">
-										Advanced graphs options.
+								<div class="thumbnail text-center">
+									<h4>Ascendancies</h4>
+									<div class="btn-group btn-group-justified" role="group" aria-label="Player quantity">
+										<a class="btn btn-default" onclick="src('api/ascendancies?league=hclegacy')">10</a>
+										<a class="btn btn-default">50</a>
+										<a class="btn btn-default">100</a>
+										<a class="btn btn-default">500</a>
 									</div>
 								</div>
-							</div>
-							<!-- End Legacy Options -->
-							<!-- HC Legacy Options -->
-							<div class="hclegacy hide">
-								<ul class="nav nav-tabs">
-									<li class="active"><a data-toggle="tab" href="#simple">Simple</a></li>
-									<li><a data-toggle="tab" href="#advanced">Advanced</a></li>
-								</ul>
 								
-								<div class="tab-content">
-									<div id="simple" class="tab-pane fade in active">
-										Simple graphs options.
-									</div>
-									<div id="advanced" class="tab-pane fade">
-										Advanced graphs options.
-									</div>
-								</div>
 							</div>
-							<!-- End HC Legacy Options -->
+							<div id="advanced" class="tab-pane fade">
+								Advanced graphs options.
+							</div>
 						</div>
 					</div>
-				</div>
-				<!-- Content -->
-				<div class="col-sm-8">
-					<div class="text-center">
-						<iframe id="graph" src="" frameborder="0" scrolling="no"></iframe>
+					<!-- End Legacy Options -->
+					<!-- HC Legacy Options -->
+					<div class="hclegacy hide">
+						<ul class="nav nav-tabs">
+							<li class="active"><a data-toggle="tab" href="#simple">Simple</a></li>
+							<li><a data-toggle="tab" href="#advanced">Advanced</a></li>
+						</ul>
+						
+						<div class="tab-content">
+							<div id="simple" class="tab-pane fade in active">
+								Simple graphs options.
+							</div>
+							<div id="advanced" class="tab-pane fade">
+								Advanced graphs options.
+							</div>
+						</div>
 					</div>
+					<!-- End HC Legacy Options -->
 				</div>
-				<!-- End Content -->
 			</div>
+		
+			<div class="text-center">
+				<iframe id="graph" src="" frameborder="0" scrolling="no"></iframe>
+			</div>
+			<!-- End Content -->
 		</div>
 	</main>
 	<footer>
 		<div class ="container">
-			<div class="row">
-				<div class="col-sm-8">
-					This site is fan-made and not affiliated with Grinding Gear Games in any way. Check out our <a href="docs">API</a>.
-				</div>
-				<div class="col-sm-4">
-					<span class="pull-right">2017 - <a href="https://github.com/tcK1">Github</a></span>
-				</div>
-			</div>
+			This site is fan-made and not affiliated with Grinding Gear Games in any way. Check out our <a href="docs">API</a>.
+			<span class="pull-right">2017 - <a href="https://github.com/tcK1">Github</a></span>
 		</div>
 	</footer>
 </body>

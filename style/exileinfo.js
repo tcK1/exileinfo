@@ -5,7 +5,9 @@ $(document).on('change', '.div-toggle', function() {
     $(target).children().addClass('hide');
     $(show).removeClass('hide');
 });
-
+$(document).ready(function(){
+    $('.div-toggle').trigger('change');
+});
 // Change iframe src
 function src(loc) {
     document.getElementById('graph').src = loc;
