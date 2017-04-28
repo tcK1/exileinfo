@@ -4,8 +4,9 @@
 <head>
 	<!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
 	<title>ExileInfo</title>
 	<meta name="description" content="Stats about current path of exile league.">
 	<meta name="author" content="Kaic Bastidas">
@@ -27,10 +28,9 @@
 <body ng-controller="navCtrl">
 	<header class="container">
 		<a class="logo" href="/">
-			<span class="exile">EXILE</span>
-			<span class="info">INFO</span>
+			<span class="exile">EXILE</span><span class="info">INFO</span>
 		</a>
-		<select class="selectpicker pull-right div-toggle" title="Leagues" data-style="choose" ng-model="currentPage" ng-change="go(currentPage)" >
+		<select id="selectid" class="selectpicker pull-right" title="Leagues" data-style="choose" ng-model="currentPage" ng-change="go(currentPage)" data-width="auto">
 			<optgroup label="Normal">
 				<option value="legacy" selected>Legacy</option>
 				<option value="hclegacy">HC Legacy</option>
@@ -45,43 +45,44 @@
 			</optgroup>
 		</select>
 	</header>
-	<main>
-		<div class="container"><!-- Page content go here -->
+	<main class="container">
+		<div class="wraper"><!-- Page content go here -->
 			<div class="alert alert-info" role="alert">
 				<span class="badge">WIP</span>
 				<strong>Hello there!</strong> We are currently under construction, so things can go wild out of nowhere. <a href="info" class="alert-link">Info</a>.
 			</div>
 			
-			<!-- View route -->
+			<!-- View -->
 			<ng-view>
 				<p class="text-center"><img src="gif.gif"></img></p>
 			</ng-view>
-			<!-- View route -->
+			<!-- View -->
 			<!-- End Content -->
 		</div>
 	</main>
-	<footer>
-		<div class ="container">
-			This site is fan-made and not affiliated with Grinding Gear Games in any way. Check out our <a href="docs">API</a>.
-			<span class="pull-right">2017 - <a href="https://github.com/tcK1">Github</a></span>
-		</div>
+	<footer class ="container">
+		This site is fan-made and not affiliated with Grinding Gear Games in any way. Check out our <a href="docs">API</a>.
+		<span class="pull-right">2017 - <a href="https://github.com/tcK1">Github</a></span>
 	</footer>
 	
 	<!-- jQuery -->
-	<script  src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script>
+	<script  src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 
 	<!-- AngularJS and ngRoute -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-route.min.js"></script>
 	
 	<!-- Bootstrap -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>    
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>    
 	
 	<!-- BootstrapSelect -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
 
 	<!-- FontAwsome -->
 	<script src="https://use.fontawesome.com/14677646d6.js"></script>
+	
+	<!-- IframeResizer -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.5.14/iframeResizer.min.js"></script>
 
 	<!-- ExileInfo -->
 	<script src="style/exileinfo.js"></script>

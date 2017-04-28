@@ -58,9 +58,13 @@ class ascendancies {
 }
 
 if(isset($_GET["league"])){
-    $class = new ascendancies("legacy");
+    $class = new ascendancies($_GET["league"]);
 
 ?>
+<style type="text/css">
+    svg > g > g:last-child { pointer-events: none }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.5.14/iframeResizer.contentWindow.min.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
 
@@ -76,10 +80,23 @@ if(isset($_GET["league"])){
     function drawChart() {
     
         // Create the data table.
-        var data = new google.visualization.DataTable('<? echo $class->get_json(); ?>');
+        var data = google.visualization.arrayToDataTable(<? echo($class->get_json()); ?>);
         
         // Set chart options
         var options = { title:'<? echo $class->get_title(); ?>',
+                        width: '100%',
+                        height: '100%',
+                        chartArea:{
+                            left:0,
+                            top: 20,
+                            bottom: 15,
+                            right: 0,
+                            width: '100%',
+                            height: '100%',
+                        },
+                        tooltip: { 
+                            trigger: 'selection'
+                        },
                         backgroundColor: 'transparent',
                         titleTextStyle: {
                             color: '#c3c3c3'
@@ -110,7 +127,15 @@ if(isset($_GET["league"])){
         // Instantiate and draw our chart, passing in some options.
         var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
         chart.draw(data, options);
+
+        google.visualization.events.addListener(chart, 'onmouseover', function(entry) {
+           chart.setSelection([{row: entry.row}]);
+        });    
         
+        google.visualization.events.addListener(chart, 'onmouseout', function(entry) {
+           chart.setSelection([]);
+        });
+
         function resizeChart () {
             chart.draw(data, options);
         }
@@ -126,7 +151,7 @@ if(isset($_GET["league"])){
     }
 </script>
 
-<div id="chart_div" align='center' style="width: 100%; height: 100%;"></div>
+<div id="chart_div"></div>
 
 <?php
 } else {

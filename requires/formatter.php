@@ -24,16 +24,14 @@ class formatter {
      **/
     public function get_ascendancies_array() {
         $array = array();
-        $array['cols'] = array(
-            // {id: 'task', label: 'Task', type: 'string'}
-            array('id' => 'ascendancy', 'label' => 'Ascendancy', 'type' => 'string'),
-            array('id' => 'amount', 'label' => 'Amount', 'type' => 'number')
-            );
-        $array['rows'] = array();
+        $labels = [
+            "Ascendancy",
+            "Amount"
+        ];
+        array_push($array, $labels);
         foreach ( $this->data as $id => $value ) {
-            // {c:[{v: 'Work'}, {v: 11}]}
-            $aux = array('c' => array(array('v' => $value['Class']), array('v' => $value['Count'])));
-            array_push($array['rows'], $aux);
+            $aux = [$value['Class'], $value['Count']];
+            array_push($array, $aux);
         }
         return $array;
     }

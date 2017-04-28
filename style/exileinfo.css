@@ -1,11 +1,17 @@
 body {
   background-color: #040404;
   font-family: 'Open Sans', sans-serif;
+  color: #9e9e9e;
 }
 
-body .container {
+body .container, .container-fluid {
   width: 768px;
   padding: 5px 0px;
+}
+@media (max-width: 767px) {
+    body .container {
+        width: auto;
+    }
 }
 
 /* HEADER */
@@ -19,8 +25,9 @@ header {
   letter-spacing: 1px;
 }
 .logo .exile{
-  text-shadow: 1px 0 15px #ffbd3f, 0 1px 15px #ee2b15;
-  color: #0d0d0d;
+  /* text-shadow: 1px 0 15px #ffbd3f, 0 1px 15px #ee2b15;
+  color: #0d0d0d; */
+  color: #dddddd;
 }
 .logo .info{
   color: #dddddd;
@@ -44,28 +51,21 @@ main .alert {
   color: #9e9e9e;
 }
 
-main .container {
+main .wraper {
   /* top&bottom right&left */
   background-color: #1a1a1a;
   padding: 10px 25px;
   overflow-y: auto;
 }
 
-.graphpicker {
-  /* padding: 10px 15px; */
-}
-
-.hide {
-   display: none; 
+iframe {
+  border: 0;
 }
 
 /* FOOTER */
-footer .container {
+footer {
   /* top&bottom right&left */
   font-size: 80%;
   padding: 1px 15px;
-}
-
-iframe {
-
+  color: #1a1a1a;
 }
