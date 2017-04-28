@@ -10,7 +10,7 @@ php:
  
 before_install:
   - sudo apt-get update
-  - phpenv config-add php.ini
+  - echo "extension = mongo.so" >> ~/.phpenv/versions/5.6/etc/php.ini
   - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-engine
   - docker build -t ticokaic/exileinfo .
   - docker run -d ticokaic/exileinfo 
