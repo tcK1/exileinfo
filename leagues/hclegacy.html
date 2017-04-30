@@ -1,1 +1,12 @@
-hclegacy
+<div class="row">
+    <iframe class="col-xs-12 col-md-6" id="ascendancies" src="api/ascendancies?league=hclegacy" scrolling="no"></iframe>
+    <iframe class="col-xs-12 col-md-6" id="skillgems" src="api/skillgems?league=hclegacy" scrolling="no"></iframe>
+    <iframe class="col-xs-12 col-md-6" id="supportgems" src="api/supportgems?league=hclegacy" scrolling="no"></iframe>
+    <iframe class="col-xs-12 col-md-6" id="uniqueitems" src="api/uniqueitems?league=hclegacy" scrolling="no"></iframe>
+    <script>
+        iFrameResize({}, '#ascendancies');
+        iFrameResize({}, '#skillgems');
+        iFrameResize({}, '#supportgems');
+        iFrameResize({}, '#uniqueitems');
+    </script>
+</div>
