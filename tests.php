@@ -1,5 +1,5 @@
 <?php
-include(dirname(__FILE__)."/api/acendancies.php");
+include(dirname(__FILE__)."/api/ascendancies.php");
 
 class tests extends PHPUnit_Framework_TestCase {
 	
