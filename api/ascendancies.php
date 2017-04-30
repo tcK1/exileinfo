@@ -130,7 +130,7 @@ if(isset($_GET["league"])){
 } else {
     header('Content-Type: application/json');
     $response = array();
-    $response[error] = 'league not defined';
+    $response['error'] = 'league not defined';
     echo json_encode($response);
 }
 ?>
