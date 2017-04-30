@@ -1,64 +1,37 @@
 <?php
 /**
 * Class for the ascendancies graphs.
-* Creates a new connection to get the collection and then creates a formatter with the data.
+* 
 **/
 
-include(dirname(__FILE__)."/../requires/connection.php");
-include(dirname(__FILE__)."/../requires/formatter.php");
+include(dirname(__FILE__)."/../requires/base.php");
 
-class ascendancies {
+class ascendancies extends base {
     
     /**
-     * @var formatter
+     * Formats the array to a pie chart, based on google chart format.
+     * 
+     * @return array
      **/
-    private $formatter;
-    
-    /**
-     * @var string
-     **/
-    private $title;
-    
-    /**
-     * @param string $league
-     **/
-    public function __construct($league) {
-        $con = new connection($league);
-        
-        // Creates new formatter based on the database data.
-        $this->formatter = new formatter($con->get_data());
-        
-        // Sets the graph title based on the league
-        switch($league) {
-            case "legacy":
-                $this->title = "Ascendancies in Legacy";
-                break;
-            case "hclegacy":
-                $this->title = "Ascendancies in Hardcore Legacy";
-                break;
+    public function get_array() {
+        $array = array();
+        $labels = [
+            "Ascendancy",
+            "Amount"
+        ];
+        array_push($array, $labels);
+        foreach ( $this->get_data() as $id => $value ) {
+            $aux = [$value['Class'], $value['Count']];
+            array_push($array, $aux);
         }
+        return $array;
     }
     
-    /**
-     * @return string
-     **/
-    public function get_title() {
-        return $this->title;
-    }
-    
-    /**
-     * @return json
-     **/
-    public function get_json() {
-        return json_encode(
-            // Gets the needed data in the right format.
-            $this->formatter->get_ascendancies_array()
-        );
-    }
+
 }
 
 if(isset($_GET["league"])){
-    $class = new ascendancies($_GET["league"]);
+    $class = new ascendancies($_GET["league"], basename(__FILE__, '.php'));
 
 ?>
 <style type="text/css">
