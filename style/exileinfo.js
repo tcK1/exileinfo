@@ -1,19 +1,5 @@
-var app = angular.module("ExileInfo", ['ngRoute']);
+var app = angular.module("ExileInfo", ['ngRoute', 'angulartics', 'angulartics.google.analytics']);
 
-app.run(['$rootScope', '$location', '$window',
-    function($rootScope, $location, $window) {
-      $rootScope.$on('$routeChangeSuccess',
-        function(event) {
-          if (!$window.ga) {
-            return;
-          }
-          $window.ga('send', 'pageview', {
-            page: $location.path()
-          });
-        });
-    }
-]);
-  
 app.config(function($routeProvider, $locationProvider){
     $routeProvider
         .when('/legacy', {
