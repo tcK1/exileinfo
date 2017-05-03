@@ -13,7 +13,10 @@ app.config(function($routeProvider, $locationProvider){
     // $locationProvider.html5Mode(true);
 });
 
-app.controller('navCtrl', function ($location, $scope) {
+app.controller('navCtrl', function ($location, $scope, $window) {
+  $scope.$on('$viewContentLoaded', function(event) {
+    $window.ga('send', 'pageview', { page: $location.url() });
+  });
   $scope.currentPage = "legacy";
   $scope.go = function (page) {
     $location.path('/' + page);
