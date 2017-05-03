@@ -1,12 +1,12 @@
 <?php
 /**
-* Class for the unique items graphs.
+* Class for the ascendancies graphs.
 * 
 **/
 
 include(dirname(__FILE__)."/../requires/base.php");
 
-class uniqueitems extends base {
+class lifexes extends base {
     
     /**
      * Formats the array to a pie chart, based on google chart format.
@@ -15,15 +15,29 @@ class uniqueitems extends base {
      **/
     public function get_array() {
         $array = array();
+        
+        $life = 0;
+        $es = 0;
+        foreach ( $this->get_data() as $id => $value ) {
+            if($value['character']['treeStats']['esPercent'] > $value['character']['treeStats']['lifePercent']){
+                $es++;
+            } else {
+                $life++;
+            }
+        }
+        
         $labels = [
-            "Item",
+            "Defense",
             "Amount"
         ];
         array_push($array, $labels);
-        foreach ( $this->get_data() as $id => $value ) {
-            $aux = [$value['Item']['name'], $value['Count']];
-            array_push($array, $aux);
-        }
+
+        $auxL = ['Life', $life];
+        $auxE = ['ES', $es];
+        
+        array_push($array, $auxL);
+        array_push($array, $auxE);
+
         return $array;
     }
     
@@ -31,7 +45,7 @@ class uniqueitems extends base {
 }
 
 if(isset($_GET["league"])){
-    $class = new uniqueitems($_GET["league"], basename(__FILE__, '.php'));
+    $class = new lifexes($_GET["league"], basename(__FILE__, '.php'));
 
 ?>
 <style type="text/css">
@@ -57,9 +71,6 @@ if(isset($_GET["league"])){
         
         // Set chart options
         var options = { title:'<? echo $class->get_title(); ?>',
-                        sliceVisibilityThreshold: 0.03,
-                        pieResidueSliceColor: 'brown',
-                        pieSliceText: 'value-and-percentage',
                         width: '100%',
                         height: '100%',
                         chartArea:{

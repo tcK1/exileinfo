@@ -48,6 +48,14 @@ abstract class base {
                         $collection = $database->SC_Statistic_UniqueItems;
                         $this->title = "Unique Items in Legacy";
                         break;
+                    case 'lifexes':
+                        $collection = $database->legacy;
+                        $this->title = "Life vs ES in Legacy";
+                        break;
+                    case 'coregems':
+                        $collection = $database->legacy;
+                        $this->title = "Core Gems in Legacy";
+                        break;
                 }
                 break;
             case "hclegacy":
@@ -67,6 +75,14 @@ abstract class base {
                     case 'uniqueitems':
                         $collection = $database->HC_Statistic_UniqueItems;
                         $this->title = "Unique Items in Hardcore Legacy";
+                        break;
+                    case 'lifexes':
+                        $collection = $database->hardcore_legacy;
+                        $this->title = "Life vs ES in Hardcore Legacy";
+                        break;
+                    case 'coregems':
+                        $collection = $database->hardcore_legacy;
+                        $this->title = "Core Gems in Hardcore Legacy";
                         break;
                 }
                 break;

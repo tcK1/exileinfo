@@ -16,7 +16,7 @@ class skillgems extends base {
     public function get_array() {
         $array = array();
         $labels = [
-            "Ascendancy",
+            "Gem",
             "Amount"
         ];
         array_push($array, $labels);
