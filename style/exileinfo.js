@@ -1,5 +1,19 @@
 var app = angular.module("ExileInfo", ['ngRoute']);
 
+app.run(['$rootScope', '$location', '$window',
+    function($rootScope, $location, $window) {
+      $rootScope.$on('$routeChangeSuccess',
+        function(event) {
+          if (!$window.ga) {
+            return;
+          }
+          $window.ga('send', 'pageview', {
+            page: $location.path()
+          });
+        });
+    }
+]);
+  
 app.config(function($routeProvider, $locationProvider){
     $routeProvider
         .when('/legacy', {
@@ -13,10 +27,7 @@ app.config(function($routeProvider, $locationProvider){
     // $locationProvider.html5Mode(true);
 });
 
-app.controller('navCtrl', function ($location, $scope, $window) {
-  $scope.$on('$viewContentLoaded', function(event) {
-    $window.ga('send', 'pageview', { page: $location.url() });
-  });
+app.controller('navCtrl', function ($location, $scope) {
   $scope.currentPage = "legacy";
   $scope.go = function (page) {
     $location.path('/' + page);
