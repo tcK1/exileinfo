@@ -8,14 +8,19 @@ app.config(function($routeProvider, $locationProvider){
         .when('/hclegacy', {
             templateUrl: "leagues/hclegacy.html"
         })
+        .when('/info', {
+            templateUrl: "info.html"
+        })
+        .when('/docs', {
+            templateUrl: "docs.html"
+        })
         .otherwise({ redirectTo: '/legacy' });
-    // Remove comment when htacces is right
-    // $locationProvider.html5Mode(true);
+    $locationProvider.html5Mode(true);
 });
 
 app.controller('navCtrl', function ($location, $scope) {
-  $scope.currentPage = "legacy";
-  $scope.go = function (page) {
-    $location.path('/' + page);
-  };
+    $scope.currentPage = "legacy";
+    $scope.go = function (page) {
+        $location.path('/' + page);
+    };
 });

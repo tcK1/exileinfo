@@ -36,10 +36,11 @@
 </head>
 <body ng-controller="navCtrl">
 	<header class="container">
-		<a class="logo" href="/">
+		<a class="logo" href="" ng-click="go('legacy')">
 			<span class="exile">EXILE</span><span class="info">INFO</span>
 		</a>
-		<select id="selectid" class="selectpicker pull-right" title="Leagues" data-style="choose" ng-model="currentPage" ng-change="go(currentPage)" data-width="auto">
+
+		<select id="selectid" class="selectpicker pull-right" title="Leagues" data-style="choose" data-width="auto" ng-model="currentPage" ng-change="go(currentPage)">
 			<optgroup label="Normal">
 				<option value="legacy" selected>Legacy</option>
 				<option value="hclegacy">HC Legacy</option>
@@ -53,12 +54,13 @@
 				<option value="hardcore" data-subtext="Soon™">Hardcore</option>
 			</optgroup>
 		</select>
+
 	</header>
 	<main class="container">
 		<div class="wraper"><!-- Page content go here -->
 			<div class="alert alert-info" role="alert">
 				<span class="badge">WIP</span>
-				<strong>Hello there!</strong> We are currently under construction, so things can go wild out of nowhere. <a href="info" class="alert-link">Info</a>.
+				<strong>Hello there!</strong> We are currently under construction, so things can go wild out of nowhere. <a href="" ng-click="go('info')">Info</a>.
 			</div>
 			
 			<!-- View -->
@@ -70,7 +72,7 @@
 		</div>
 	</main>
 	<footer class ="container">
-		This site is fan-made and not affiliated with Grinding Gear Games in any way. Check out our <a href="docs">API</a>.
+		This site is fan-made and not affiliated with Grinding Gear Games in any way. Check out our <a href="" ng-click="go('docs')">API</a>.
 		<span class="pull-right">2017 - <a href="https://github.com/tcK1">Github</a></span>
 	</footer>
 	
