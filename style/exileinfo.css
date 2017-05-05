@@ -1,4 +1,11 @@
 body {
+  /*
+  background-color: #000;
+  background-image: url(../bg.jpg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center top;
+  */
   background-color: #040404;
   font-family: 'Open Sans', sans-serif;
   color: #9e9e9e;
@@ -6,7 +13,7 @@ body {
 
 body .container, .container-fluid {
   width: 768px;
-  padding: 5px 0px;
+  padding: 5px 0px 0px;
 }
 @media (max-width: 767px) {
     body .container {
@@ -56,10 +63,40 @@ main .wraper {
   background-color: #1a1a1a;
   padding: 10px 25px;
   overflow-y: auto;
+  box-shadow: 1px 1px 5px #333333;
+  border-radius: 2px;
 }
 
 iframe {
   border: 0;
+}
+
+.result {
+  height: 300px;
+}
+
+.result code {
+  font-size: 10px;
+}
+
+#parent{
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+#child{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: -17px; /* Increase/Decrease this value for cross-browser compatibility */
+    overflow-y: scroll;
+}
+
+.dl-horizontal dt {
+  text-align: left;
 }
 
 /* FOOTER */
@@ -67,5 +104,5 @@ footer {
   /* top&bottom right&left */
   font-size: 80%;
   padding: 1px 15px;
-  color: #1a1a1a;
+  color: #9e9e9e;
 }

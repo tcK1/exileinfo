@@ -19,7 +19,9 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
 
 	<!-- GoogleFonts -->
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
 	
 	<!-- ExileInfo -->
 	<link rel="stylesheet" href="style/exileinfo.css"/>
@@ -39,7 +41,7 @@
 		<a class="logo" href="" ng-click="go('legacy')">
 			<span class="exile">EXILE</span><span class="info">INFO</span>
 		</a>
-
+		<a href="" ng-click="go('docs')">API</a> / <a href="" ng-click="go('info')">Info</a>
 		<select id="selectid" class="selectpicker pull-right" title="Leagues" data-style="choose" data-width="auto" ng-model="currentPage" ng-change="go(currentPage)">
 			<optgroup label="Normal">
 				<option value="legacy" selected>Legacy</option>
@@ -60,7 +62,7 @@
 		<div class="wraper"><!-- Page content go here -->
 			<div class="alert alert-info" role="alert">
 				<span class="badge">WIP</span>
-				<strong>Hello there!</strong> We are currently under construction, so things can go wild out of nowhere. <a href="" ng-click="go('info')">Info</a>.
+				<strong>Hello there!</strong> We are currently under construction, so things can go wild out of nowhere.
 			</div>
 			
 			<!-- View -->
@@ -72,8 +74,8 @@
 		</div>
 	</main>
 	<footer class ="container">
-		This site is fan-made and not affiliated with Grinding Gear Games in any way. Check out our <a href="" ng-click="go('docs')">API</a>.
-		<span class="pull-right">2017 - <a href="https://github.com/tcK1">Github</a></span>
+		This site is fan-made and not affiliated with Grinding Gear Games in any way.
+		<span class="pull-right">2017 - <a href="https://github.com/tcK1/exileinfo">Github</a></span>
 	</footer>
 	
 	<!-- jQuery -->
@@ -93,11 +95,7 @@
 	<!-- BootstrapSelect -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
 
-	<!-- FontAwsome -->
-	<script src="https://use.fontawesome.com/14677646d6.js"></script>
-	
-	<!-- IframeResizer -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.5.14/iframeResizer.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
 
 	<!-- ExileInfo -->
 	<script src="style/exileinfo.js"></script>

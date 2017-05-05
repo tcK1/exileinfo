@@ -48,10 +48,7 @@ if(isset($_GET["league"])){
     $class = new lifexes($_GET["league"], basename(__FILE__, '.php'));
 
 ?>
-<style type="text/css">
-    svg > g > g:last-child { pointer-events: none }
-</style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.5.14/iframeResizer.contentWindow.min.js"></script>
+<link rel="stylesheet" href="/style/graphs.css"/>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
 
