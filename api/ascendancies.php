@@ -57,12 +57,12 @@ if(isset($_GET["league"])){
                         width: '100%',
                         height: '100%',
                         chartArea:{
-                            left:0,
+                            left:15,
                             top: 15,
                             bottom: 0,
                             right: 0,
                             width: '100%',
-                            height: '100%',
+                            height: '100%'
                         },
                         tooltip: { 
                             trigger: 'selection'
