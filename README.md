@@ -6,4 +6,5 @@ Simple interface with the current temporary leagues data.
 
 ### Tecnologies
 **Backend:** PHP, MongoDB;
+
 **Frontend:** AngulasJS, jQuery, Javascript, HTML, CSS.
