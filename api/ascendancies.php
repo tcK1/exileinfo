@@ -37,7 +37,7 @@ if(isset($_GET["league"])){
 <link rel="stylesheet" href="/style/graphs.css"/>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
-
+    
     // Load the Visualization API and the corechart package.
     google.charts.load('current', {'packages':['corechart']});
     
@@ -119,6 +119,8 @@ if(isset($_GET["league"])){
             window.resize = resizeChart;
         }
     }
+
+
 </script>
 
 <div id="chart_div"></div>

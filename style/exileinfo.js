@@ -1,4 +1,23 @@
-var app = angular.module("ExileInfo", ['ngRoute', 'angulartics', 'angulartics.google.analytics']);
+var app_directives = angular.module("ExileInfo.directives", []);
+
+app_directives.directive('ascendancies', [
+    function () {
+        return {
+            restrict: 'E',
+            templateUrl: 'api/ascendancies?league=legacy'
+        };
+}]);
+
+app_directives.directive('skillgems', [
+    function () {
+        return {
+            restrict: 'E',
+            templateUrl: 'api/skillgems?league=legacy'
+        };
+}]);
+
+
+var app = angular.module("ExileInfo", ['ngRoute', 'angulartics', 'angulartics.google.analytics', 'ExileInfo.directives']);
 
 app.config(function($routeProvider, $locationProvider){
     $routeProvider
@@ -24,6 +43,7 @@ app.controller('navCtrl', function ($location, $scope) {
         $location.path('/' + page);
     };
 });
+
 
 function makeHttpObject() {
     try {return new XMLHttpRequest();}

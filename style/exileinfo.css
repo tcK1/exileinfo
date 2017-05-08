@@ -67,6 +67,10 @@ main .wraper {
   border-radius: 2px;
 }
 
+.graph {
+  height: 300px;
+}
+
 iframe {
   border: 0;
 }
