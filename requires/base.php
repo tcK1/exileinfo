@@ -104,8 +104,7 @@ abstract class base {
     public function get_data() {
         $collection = $this->collection;
         $cursor = $collection->find(); // Get all data inside the collection.
-        $data = iterator_to_array($cursor);
-        return $data;
+        return $cursor;
     }
     
     /**
