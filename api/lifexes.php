@@ -52,6 +52,14 @@ if(isset($_GET["league"])){
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
 
+    function getTotal(dataArray) {
+        var total = 0;
+       	for (var i = 1; i < dataArray.length; i++) {
+          total += dataArray[i][1];
+        }
+        return total;
+    }
+
     // Load the Visualization API and the corechart package.
     google.charts.load('current', {'packages':['corechart']});
     
@@ -63,12 +71,18 @@ if(isset($_GET["league"])){
     // draws it.
     function drawChart() {
     
+        var dataArray = <? echo($class->get_json()); ?>;
+        var title = '<? echo $class->get_title(); ?>';
+    
         // Create the data table.
-        var data = google.visualization.arrayToDataTable(<? echo($class->get_json()); ?>);
+        var data = google.visualization.arrayToDataTable(dataArray);
+        
+        var total = getTotal(dataArray);
+        document.getElementById('total').innerText = 'Total: '+total;
+        document.getElementById('title').innerText = title;
         
         // Set chart options
-        var options = { title:'<? echo $class->get_title(); ?>',
-                        width: '100%',
+        var options = { width: '100%',
                         height: '100%',
                         chartArea:{
                             left:15,
@@ -82,9 +96,6 @@ if(isset($_GET["league"])){
                             trigger: 'selection'
                         },
                         backgroundColor: 'transparent',
-                        titleTextStyle: {
-                            color: '#c3c3c3'
-                        },
                         hAxis: {
                             textStyle: {
                                 color: '#c3c3c3'
@@ -135,7 +146,16 @@ if(isset($_GET["league"])){
     }
 </script>
 
-<div id="chart_div"></div>
+<div class="chartWithOverlay">
+
+    <div id="chart_div"></div>
+    
+    <div class="overlay">
+        <div id="title"></div>
+        <div id="total"></div>
+    </div>
+
+</div>
 
 <?php
 } else {

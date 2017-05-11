@@ -1,23 +1,9 @@
-var app_directives = angular.module("ExileInfo.directives", []);
-
-app_directives.directive('ascendancies', [
-    function () {
-        return {
-            restrict: 'E',
-            templateUrl: 'api/ascendancies?league=legacy'
-        };
-}]);
-
-app_directives.directive('skillgems', [
-    function () {
-        return {
-            restrict: 'E',
-            templateUrl: 'api/skillgems?league=legacy'
-        };
-}]);
-
-
-var app = angular.module("ExileInfo", ['ngRoute', 'angulartics', 'angulartics.google.analytics', 'ExileInfo.directives']);
+/*  
+    global angular 
+    global ActiveXObject
+    global hljs
+*/
+var app = angular.module("ExileInfo", ['ngRoute', 'angulartics', 'angulartics.google.analytics']);
 
 app.config(function($routeProvider, $locationProvider){
     $routeProvider

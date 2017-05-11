@@ -1,3 +1,15 @@
+.chartWithOverlay {
+    font: normal 13px Arial, sans-serif;
+    color: #c3c3c3;
+    font-weight: bold;
+    position: relative;
+}
+.overlay {
+            
+    position: absolute;
+    top: 5px;   /* chartArea top  */
+    left: 12px; /* chartArea left */
+}
 svg > g > g:last-child { 
     pointer-events: none; 
 }
