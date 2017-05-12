@@ -70,6 +70,7 @@ if(isset($_GET["league"])){
         // Set chart options
         var options = { width: '100%',
                         height: '100%',
+                        pieSliceText: 'value-and-percentage',
                         chartArea:{
                             left:15,
                             top: 15,
