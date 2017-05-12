@@ -20,7 +20,12 @@ class skillgems extends base {
             "Amount"
         ];
         array_push($array, $labels);
-        $data = $this->get_data(array(), array('Gem.poename', 'Count'));
+        $tag = $_GET["tag"];
+        $js = "function() {
+            return this.Gem.gemTags.includes('".$tag."');
+        }";
+
+        $data = $this->get_data(array('$where' => $js), array('Gem.poename', 'Count'));
         foreach ($data as $id => $value) {
             $aux = [$value['Gem']['poename'], $value['Count']];
             array_push($array, $aux);
@@ -66,10 +71,10 @@ if(isset($_GET["league"])){
         
         var total = getTotal(dataArray);
         document.getElementById('total').innerText = 'Total: '+total;
-        document.getElementById('title').innerText = title;
+        document.getElementById('title').innerText = <? echo "'".$_GET["tag"]." '"."+"; ?> title;
         
         // Set chart options
-        var options = { sliceVisibilityThreshold: 0.03,
+        var options = { <? if(!isset($_GET["tag"])){ ?>sliceVisibilityThreshold: 0.03, <? } ?>
                         pieResidueSliceColor: 'brown',
                         pieSliceText: 'value-and-percentage',
                         width: '100%',
