@@ -101,9 +101,9 @@ abstract class base {
     /**
      * @return array
      **/
-    public function get_data() {
+    public function get_data($where = array(), $select = array()) {
         $collection = $this->collection;
-        $cursor = $collection->find(); // Get all data inside the collection.
+        $cursor = $collection->find($where, $select); // Get all data inside the collection.
         return $cursor;
     }
     

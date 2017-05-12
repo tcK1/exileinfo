@@ -18,7 +18,7 @@ class lifexes extends base {
         
         $life = 0;
         $es = 0;
-        foreach ( $this->get_data() as $id => $value ) {
+        foreach ( $this->get_data(array(), array('character.treeStats.esPercent', 'character.treeStats.lifePercent')) as $id => $value ) {
             if($value['character']['treeStats']['esPercent'] > $value['character']['treeStats']['lifePercent']){
                 $es++;
             } else {

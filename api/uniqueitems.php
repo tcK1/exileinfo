@@ -20,7 +20,7 @@ class uniqueitems extends base {
             "Amount"
         ];
         array_push($array, $labels);
-        foreach ( $this->get_data() as $id => $value ) {
+        foreach ( $this->get_data(array(), array('Item.name', 'Count')) as $id => $value ) {
             $aux = [$value['Item']['name'], $value['Count']];
             array_push($array, $aux);
         }

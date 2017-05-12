@@ -20,7 +20,7 @@ class skillgems extends base {
             "Amount"
         ];
         array_push($array, $labels);
-        foreach ( $this->get_data() as $id => $value ) {
+        foreach ( $this->get_data(array(), array('Gem.poename', 'Count')) as $id => $value ) {
             $aux = [$value['Gem']['poename'], $value['Count']];
             array_push($array, $aux);
         }

@@ -22,7 +22,7 @@ class coregems extends base {
         array_push($array, $labels);
         
         $aux = array();
-        foreach ( $this->get_data() as $id => $value ) {
+        foreach ( $this->get_data(array(), array('character.coreSkillString')) as $id => $value ) {
             $aux[$value['character']['coreSkillString']]++;
         }
         
