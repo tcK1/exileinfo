@@ -20,7 +20,8 @@ class ascendancies extends base {
             "Amount"
         ];
         array_push($array, $labels);
-        foreach ( $this->get_data() as $id => $value ) {
+        $data = $this->get_data();
+        foreach ($data as $id => $value) {
             $aux = [$value['Class'], $value['Count']];
             array_push($array, $aux);
         }
@@ -31,7 +32,7 @@ class ascendancies extends base {
 }
 
 if(isset($_GET["league"])){
-    $class = new ascendancies($_GET["league"], basename(__FILE__, '.php'));
+    $class = new ascendancies($_GET["league"]);
 
 ?>
 <link rel="stylesheet" href="/style/graphs.css"/>

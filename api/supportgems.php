@@ -20,7 +20,8 @@ class supportgems extends base {
             "Amount"
         ];
         array_push($array, $labels);
-        foreach ( $this->get_data(array(), array('Gem.poename', 'Count')) as $id => $value ) {
+        $data = $this->get_data(array(), array('Gem.poename', 'Count'));
+        foreach ($data as $id => $value) {
             $aux = [$value['Gem']['poename'], $value['Count']];
             array_push($array, $aux);
         }
@@ -31,7 +32,7 @@ class supportgems extends base {
 }
 
 if(isset($_GET["league"])){
-    $class = new supportgems($_GET["league"], basename(__FILE__, '.php'));
+    $class = new supportgems($_GET["league"]);
 
 ?>
 <link rel="stylesheet" href="/style/graphs.css"/>

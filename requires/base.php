@@ -20,7 +20,7 @@ abstract class base {
     /**
      * @param string $league
      **/
-    public function __construct($league, $base) {
+    public function __construct($league) {
         // Connects using the MongoDB URI via envioriment variable.
         $connection = new MongoClient(getenv("MONGODBURI"));
         $db = getenv("MONGODB");
@@ -31,7 +31,7 @@ abstract class base {
         // Select collection based on league and base.
         switch($league) {
             case "legacy":
-                switch ($base) {
+                switch (get_class($this)) {
                     case 'ascendancies':
                         $collection = $database->SC_Statistic_Ascendancies;
                         $this->title = "Ascendancies in Legacy";
@@ -59,7 +59,7 @@ abstract class base {
                 }
                 break;
             case "hclegacy":
-                switch ($base) {
+                switch (get_class($this)) {
                     case 'ascendancies':
                         $collection = $database->HC_Statistic_Ascendancies;
                         $this->title = "Ascendancies in Hardcore Legacy";
@@ -101,9 +101,9 @@ abstract class base {
     /**
      * @return array
      **/
-    public function get_data($where = array(), $select = array()) {
+    public function get_data($query = array(), $select = array()) {
         $collection = $this->collection;
-        $cursor = $collection->find($where, $select); // Get all data inside the collection.
+        $cursor = $collection->find($query, $select); // Get all data inside the collection.
         return $cursor;
     }
     

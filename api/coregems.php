@@ -21,12 +21,13 @@ class coregems extends base {
         ];
         array_push($array, $labels);
         
+        $data = $this->get_data(array(), array('character.coreSkillString'));
         $aux = array();
-        foreach ( $this->get_data(array(), array('character.coreSkillString')) as $id => $value ) {
+        foreach ($data as $id => $value) {
             $aux[$value['character']['coreSkillString']]++;
         }
         
-        foreach ( $aux as $id => $value ) {
+        foreach ($aux as $id => $value) {
             $line = [$id, $value];
             array_push($array, $line);
         }
@@ -38,7 +39,7 @@ class coregems extends base {
 }
 
 if(isset($_GET["league"])){
-    $class = new coregems($_GET["league"], basename(__FILE__, '.php'));
+    $class = new coregems($_GET["league"]);
 
 ?>
 <link rel="stylesheet" href="/style/graphs.css"/>
@@ -141,7 +142,11 @@ if(isset($_GET["league"])){
         }
     }
 </script>
-
+<style>
+#comment {
+    font-size: 7px !important;
+}
+</style>
 <div class="chartWithOverlay">
 
     <div id="chart_div"></div>
@@ -149,6 +154,7 @@ if(isset($_GET["league"])){
     <div class="overlay">
         <div id="title"></div>
         <div id="total"></div>
+        <div id="comment">Blank means the core gem could not me defined.</div>
     </div>
 
 </div>

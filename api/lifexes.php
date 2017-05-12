@@ -18,7 +18,8 @@ class lifexes extends base {
         
         $life = 0;
         $es = 0;
-        foreach ( $this->get_data(array(), array('character.treeStats.esPercent', 'character.treeStats.lifePercent')) as $id => $value ) {
+        $data = $this->get_data(array(), array('character.treeStats.esPercent', 'character.treeStats.lifePercent'));
+        foreach ($data as $id => $value) {
             if($value['character']['treeStats']['esPercent'] > $value['character']['treeStats']['lifePercent']){
                 $es++;
             } else {
@@ -45,7 +46,7 @@ class lifexes extends base {
 }
 
 if(isset($_GET["league"])){
-    $class = new lifexes($_GET["league"], basename(__FILE__, '.php'));
+    $class = new lifexes($_GET["league"]);
 
 ?>
 <link rel="stylesheet" href="/style/graphs.css"/>

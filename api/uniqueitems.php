@@ -20,7 +20,8 @@ class uniqueitems extends base {
             "Amount"
         ];
         array_push($array, $labels);
-        foreach ( $this->get_data(array(), array('Item.name', 'Count')) as $id => $value ) {
+        $data = $this->get_data(array(), array('Item.name', 'Count'));
+        foreach ($data  as $id => $value) {
             $aux = [$value['Item']['name'], $value['Count']];
             array_push($array, $aux);
         }
@@ -31,7 +32,7 @@ class uniqueitems extends base {
 }
 
 if(isset($_GET["league"])){
-    $class = new uniqueitems($_GET["league"], basename(__FILE__, '.php'));
+    $class = new uniqueitems($_GET["league"]);
 
 ?>
 <link rel="stylesheet" href="/style/graphs.css"/>
