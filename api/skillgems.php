@@ -20,10 +20,12 @@ class skillgems extends base {
             "Amount"
         ];
         array_push($array, $labels);
-        $tag = $_GET["tag"];
-        $js = "function() {
-            return this.Gem.gemTags.includes('".$tag."');
-        }";
+        $tag = strtolower($_GET["tag"]);
+        $tags = explode(",", $tag);
+        $js =       "function() {";
+        $js = $js.      "return (this.Gem.gemTags.toLowerCase().indexOf('".$tags[0]."') != -1)";
+        foreach($tags as $value) $js = $js. "&& (this.Gem.gemTags.toLowerCase().indexOf('".$value."') != -1)";
+        $js = $js.  ";}";
 
         $data = $this->get_data(array('$where' => $js), array('Gem.poename', 'Count'));
         foreach ($data as $id => $value) {
@@ -71,7 +73,7 @@ if(isset($_GET["league"])){
         
         var total = getTotal(dataArray);
         document.getElementById('total').innerText = 'Total: '+total;
-        document.getElementById('title').innerText = <? echo "'".$_GET["tag"]." '"."+"; ?> title;
+        document.getElementById('title').innerText = <? echo "'".ucfirst($_GET["tag"])." '"."+"; ?> title;
         
         // Set chart options
         var options = { <? if(!isset($_GET["tag"])){ ?>sliceVisibilityThreshold: 0.03, <? } ?>

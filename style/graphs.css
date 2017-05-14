@@ -5,7 +5,8 @@
     position: relative;
 }
 .overlay {
-            
+    float: left;
+    width: 50%;
     position: absolute;
     top: 5px;   /* chartArea top  */
     left: 12px; /* chartArea left */

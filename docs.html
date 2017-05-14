@@ -45,14 +45,14 @@ Result:
 <kbd>REQUEST /skillgems?league=:league</kbd><br>
 <dl class="dl-horizontal">
     <br><dt>league<br><em><small>Required</small></em></dt><dd>The league (name) you want to retrieve.</dd>
-    <br><dt>tag<br><em><small>Optional</small></em></dt><dd>Specific gem tag. Limited to 1 ATM.</dd>
+    <br><dt>tag<br><em><small>Optional</small></em></dt><dd>Specific gem tags, separated by comma.</dd>
 </dl>
-Example: <kbd>&lt;iframe src="https://exileinfo.xyz/api/skillgems?league=legacy&tag=Movement"&gt;&lt;/iframe&gt;</kbd><br>
+Example: <kbd>&lt;iframe src="https://exileinfo.xyz/api/skillgems?league=legacy&tag=movement,spell"&gt;&lt;/iframe&gt;</kbd><br>
 Result:
 <div class="row">
     <div class="col-xs-12 col-md-6 result">
         <script>
-            getCode('skillgems', 'api/skillgems?league=legacy&tag=Movement');
+            getCode('skillgems', 'api/skillgems?league=legacy&tag=movement,spell');
         </script>
         <div id="parent">
             <div id="child">
@@ -60,7 +60,7 @@ Result:
             </div>
         </div>
     </div>
-    <iframe class="col-xs-12 col-md-6 result" src="api/skillgems?league=legacy&tag=Movement" scrolling="no"></iframe>
+    <iframe class="col-xs-12 col-md-6 result" src="api/skillgems?league=legacy&tag=movement,spell" scrolling="no"></iframe>
 </div>
 <br>
 
