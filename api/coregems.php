@@ -15,12 +15,7 @@ class coregems extends base {
      **/
     public function get_array() {
         $array = array();
-        $labels = [
-            "Gem",
-            "Amount"
-        ];
-        array_push($array, $labels);
-        
+
         $data = $this->get_data(array(), array('character.coreSkillString'));
         $aux = array();
         foreach ($data as $id => $value) {
@@ -31,7 +26,11 @@ class coregems extends base {
             $line = [$id, $value];
             array_push($array, $line);
         }
-        
+
+        usort($array, function ($a, $b) {
+            return $b[1] - $a[1];
+        });
+
         return $array;
     }
     
@@ -42,122 +41,35 @@ if(isset($_GET["league"])){
     $class = new coregems($_GET["league"]);
 
 ?>
-<link rel="stylesheet" href="/style/graphs.css"/>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript">
+<html>
+<head>
 
-    function getTotal(dataArray) {
-        var total = 0;
-       	for (var i = 1; i < dataArray.length; i++) {
-          total += dataArray[i][1];
-        }
-        return total;
-    }
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.js"></script>
+    
+    <link rel="stylesheet" href="/style/graphs.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.css" />
 
-    // Load the Visualization API and the corechart package.
-    google.charts.load('current', {'packages':['corechart']});
-    
-    // Set a callback to run when the Google Visualization API is loaded.
-    google.charts.setOnLoadCallback(drawChart);
-    
-    // Callback that creates and populates a data table,
-    // instantiates the pie chart, passes in the data and
-    // draws it.
-    function drawChart() {
-    
-        var dataArray = <? echo($class->get_json()); ?>;
-        var title = '<? echo $class->get_title(); ?>';
-    
-        // Create the data table.
-        var data = google.visualization.arrayToDataTable(dataArray);
-        
-        var total = getTotal(dataArray);
-        document.getElementById('total').innerText = 'Total: '+total;
-        document.getElementById('title').innerText = title;
-        
-        // Set chart options
-        var options = { sliceVisibilityThreshold: 0.03,
-                        pieResidueSliceColor: 'brown',
-                        pieSliceText: 'value-and-percentage',
-                        width: '100%',
-                        height: '100%',
-                        chartArea:{
-                            left:15,
-                            top: 15,
-                            bottom: 0,
-                            right: 0,
-                            width: '100%',
-                            height: '100%'
-                        },
-                        tooltip: { 
-                            trigger: 'selection'
-                        },
-                        backgroundColor: 'transparent',
-                        hAxis: {
-                            textStyle: {
-                                color: '#c3c3c3'
-                            },
-                            titleTextStyle: {
-                                color: '#c3c3c3'
-                            }
-                        },
-                        vAxis: {
-                            textStyle: {
-                                color: '#c3c3c3'
-                            },
-                            titleTextStyle: {
-                                color: '#c3c3c3'
-                            }
-                        },
-                        legend: {
-                            textStyle: {
-                                color: '#c3c3c3'
-                            }
-                        } 
-        };
-        
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-        chart.draw(data, options);
-
-        google.visualization.events.addListener(chart, 'onmouseover', function(entry) {
-           chart.setSelection([{row: entry.row}]);
-        });    
-        
-        google.visualization.events.addListener(chart, 'onmouseout', function(entry) {
-           chart.setSelection([]);
-        });
-
-        function resizeChart () {
-            chart.draw(data, options);
-        }
-        if (document.addEventListener) {
-            window.addEventListener('resize', resizeChart);
-        }
-        else if (document.attachEvent) {
-            window.attachEvent('onresize', resizeChart);
-        }
-        else {
-            window.resize = resizeChart;
-        }
-    }
-</script>
-<style>
-#comment {
-    font-size: 7px !important;
-}
-</style>
-<div class="chartWithOverlay">
-
-    <div id="chart_div"></div>
-    
-    <div class="overlay">
-        <div id="title"></div>
-        <div id="total"></div>
-        <div id="comment">Blank means the core gem could not me defined.</div>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="overlay">
+            <div id="title"></div>
+            <div id="total"></div>
+            <div id="info"></div>
+        </div>
+        <div id="chart"></div>
     </div>
+    <script type="text/javascript">
 
-</div>
+        var dataArray = <? echo($class->get_json()); ?>;
+        var title = '<? echo $class->get_title(); ?>'
+        var info = ['Gem', 'Amount'];
+
+    </script>
+    <script src="/style/graphs.bar.js"></script>
+</body>
+</html>
 
 <?php
 } else {

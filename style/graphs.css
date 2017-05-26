@@ -1,22 +1,45 @@
-.chartWithOverlay {
+.c3-target.c3-defocused {
+    opacity: 1 !important;
+}
+
+.c3 .c3-axis path, .c3 .c3-axis line {
+    stroke: #c3c3c3;
+}
+
+.c3-bar {
+    pointer-events:auto !important;
+}
+
+.tick {
+    fill: #c3c3c3;
+}
+
+g.legendg {
+    cursor: pointer;
+    color: #c3c3c3 !important;
+    font: normal 12px Arial, sans-serif !important;
+}
+
+.wrapper {
     font: normal 13px Arial, sans-serif;
-    color: #c3c3c3;
-    font-weight: bold;
-    position: relative;
+    color: #c3c3c3 !important;
+    font-weight: bold !important;
+    position: relative !important;
+    min-height: 100% !important;
 }
+
 .overlay {
-    float: left;
-    width: 50%;
-    position: absolute;
-    top: 5px;   /* chartArea top  */
-    left: 12px; /* chartArea left */
+    float: left !important;
+    position: absolute !important;
+    top: 5px !important;   /* chartArea top  */
+    left: 12px !important; /* chartArea left */
 }
-svg > g > g:last-child { 
-    pointer-events: none; 
+
+#chart {
+    min-height: 100% !important;
+
 }
-#chart_div {
-    min-height: 100%;
-}
-body {
-    margin: 0px !important;
+
+#info {
+    font: normal 10px Arial, sans-serif !important;
 }
