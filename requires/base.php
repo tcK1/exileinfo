@@ -25,9 +25,9 @@ abstract class base {
         $connection = new MongoClient(getenv("MONGODBURI"));
         $db = getenv("MONGODB");
         $database = $connection->$db;
-        
+
         $collection;
-        
+
         // Select collection based on league and base.
         switch($league) {
             case "legacy":
@@ -86,8 +86,64 @@ abstract class base {
                         break;
                 }
                 break;
+            case "ssflegacy":
+                switch (get_class($this)) {
+                    case 'ascendancies':
+                        $collection = $database->SCSSF_Statistic_Ascendancies;
+                        $this->title = "Ascendancies in SSF Legacy";
+                        break;
+                    case 'skillgems':
+                        $collection = $database->SCSSF_Statistic_SkillGems;
+                        $this->title = "Skill Gems in SSF Legacy";
+                        break;
+                    case 'supportgems':
+                        $collection = $database->SCSSF_Statistic_SupportGems;
+                        $this->title = "Support Gems in SSF Legacy";
+                        break;
+                    case 'uniqueitems':
+                        $collection = $database->SCSSF_Statistic_UniqueItems;
+                        $this->title = "Unique Items in SSF Legacy";
+                        break;
+                    case 'lifexes':
+                        $collection = $database->selectCollection('ssf legacy');
+                        $this->title = "Life vs ES in SSF Legacy";
+                        break;
+                    case 'coregems':
+                        $collection = $database->selectCollection('ssf legacy');
+                        $this->title = "Core Gems in SSF Legacy";
+                        break;
+                }
+                break;
+            case "ssfhclegacy":
+                switch (get_class($this)) {
+                    case 'ascendancies':
+                        $collection = $database->HCSSF_Statistic_Ascendancies;
+                        $this->title = "Ascendancies in SSF Hardcore Legacy";
+                        break;
+                    case 'skillgems':
+                        $collection = $database->HCSSF_Statistic_SkillGems;
+                        $this->title = "Skill Gems in SSF Hardcore Legacy";
+                        break;
+                    case 'supportgems':
+                        $collection = $database->HCSSF_Statistic_SupportGems;
+                        $this->title = "Support Gems in SSF Hardcore Legacy";
+                        break;
+                    case 'uniqueitems':
+                        $collection = $database->HCSSF_Statistic_UniqueItems;
+                        $this->title = "Unique Items in SSF Hardcore Legacy";
+                        break;
+                    case 'lifexes':
+                        $collection = $database->selectCollection('hardcore_ssf hc legacy');
+                        $this->title = "Life vs ES in SSF Hardcore Legacy";
+                        break;
+                    case 'coregems':
+                        $collection = $database->selectCollection('hardcore_ssf hc legacy');
+                        $this->title = "Core Gems in SSF Hardcore Legacy";
+                        break;
+                }
+                break;
         }
-        
+
         $this->collection = $collection;
     }
     

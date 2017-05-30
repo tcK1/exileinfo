@@ -18,7 +18,7 @@ class coregems extends base {
 
         $data = $this->get_data(array(), array('character.coreSkillString'));
         $aux = array();
-        foreach ($data as $id => $value) {
+        foreach ($data as $value) {
             $aux[$value['character']['coreSkillString']]++;
         }
         

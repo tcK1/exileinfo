@@ -13,6 +13,12 @@ app.config(function($routeProvider, $locationProvider){
         .when('/hclegacy', {
             templateUrl: "leagues/hclegacy.html"
         })
+        .when('/ssflegacy', {
+            templateUrl: "leagues/ssflegacy.html"
+        })
+        .when('/ssfhclegacy', {
+            templateUrl: "leagues/ssfhclegacy.html"
+        })
         .when('/info', {
             templateUrl: "info.html"
         })

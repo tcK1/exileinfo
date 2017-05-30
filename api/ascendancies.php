@@ -17,7 +17,7 @@ class ascendancies extends base {
         $array = array();
 
         $data = $this->get_data();
-        foreach ($data as $id => $value) {
+        foreach ($data as $value) {
             $aux = [$value['Class'], $value['Count']];
             array_push($array, $aux);
         }

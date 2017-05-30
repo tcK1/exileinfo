@@ -24,7 +24,7 @@ class supportgems extends base {
         $js = $js.  ";}";
 
         $data = $this->get_data(array('$where' => $js), array('Gem.poename', 'Count'));
-        foreach ($data as $id => $value) {
+        foreach ($data as $value) {
             $aux = [$value['Gem']['poename'], $value['Count']];
             array_push($array, $aux);
         }
@@ -65,7 +65,7 @@ if(isset($_GET["league"])){
     <script type="text/javascript">
 
         var dataArray = <? echo($class->get_json()); ?>;
-        var title = '<? echo $class->get_title(); ?>'
+        var title = '<? echo ucfirst($_GET["tag"])." ".$class->get_title(); ?>'
         var info = ['Support Gem', 'Amount'];
 
     </script>

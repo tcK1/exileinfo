@@ -17,7 +17,7 @@ class uniqueitems extends base {
         $array = array();
 
         $data = $this->get_data(array(), array('Item.name', 'Count'));
-        foreach ($data  as $id => $value) {
+        foreach ($data  as $value) {
             $aux = [$value['Item']['name'], $value['Count']];
             array_push($array, $aux);
         }

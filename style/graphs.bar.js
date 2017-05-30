@@ -171,19 +171,14 @@ function DrawLegendSubset(seriesSubset,legendPerPage,pageNo,totalPages) {
             var auxmeasure = context.measureText(aux);
             var i = 0;
             var nextmeasure = context.measureText(text[i]);
-            
-            // console.log(spointsmeasure.width);
-            
+
             while (auxmeasure.width+nextmeasure.width+spointsmeasure.width < limit-spointsmeasure.width) {
-                // console.log((auxmeasure.width+nextmeasure.width+spointsmeasure.width)+"/"+(limit-spointsmeasure.width));
-                // console.log(aux);
 
                 aux += text[i];
                 auxmeasure = context.measureText(aux);
-                // console.log(auxmeasure.width);
                 i++;
                 nextmeasure = context.measureText(text[i]);
-                // console.log(nextmeasure.width);
+
             }
             aux += spoints;
 
